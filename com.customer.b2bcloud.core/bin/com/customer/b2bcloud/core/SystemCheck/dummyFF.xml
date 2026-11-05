@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/dummyFF.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF" componentType="1" name="com.customer.b2bcloud.core.SystemCheck.dummyFF">
+  </ConfigurationComponent>
+?>
+<DataSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="MetadataDataSet.xsd" dataSetID="fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF" description="com.customer.b2bcloud.core.SystemCheck.dummyFF" rootComponentID="_fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF.ROOT_COMPONENT_ID" sourceTarget="false" syntax="FLATFILE" userDefinedID="com.customer.b2bcloud.core.SystemCheck.dummyFF" version="DEPLOYED">
+  <MetadataComposite componentID="_fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF.ROOT_COMPONENT_ID" contentModelType="SEQUENCE" description="com.customer.b2bcloud.core.SystemCheck.dummyFF" nodeType="FILE_SET" syntax="FLATFILE">
+    <FileNode>
+      <FileSet name="com.customer.b2bcloud.core.SystemCheck.dummyFF"/>
+    </FileNode>
+    <RelationshipDescriptor componentID="_fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF.FLATFILE_NODE_ID" conditional="false" maximumOccurs="0" minimumOccurs="0" repeating="false" required="false" unbounded="false"/>
+  </MetadataComposite>
+  <MetadataComposite componentID="_fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF.FLATFILE_NODE_ID" contentModelType="SEQUENCE" nodeType="FILE_FILE" syntax="FLATFILE">
+    <FileNode>
+      <FileFile fixedLength="true" name="dummyFF"/>
+    </FileNode>
+    <RelationshipDescriptor componentID="_fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF$New_Record" conditional="false" maximumOccurs="-1" minimumOccurs="0" repeating="false" required="false" unbounded="true"/>
+  </MetadataComposite>
+  <MetadataComposite componentID="_fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF$New_Record.New_Field" contentModelType="NONE" nodeType="FILE_FIELD" syntax="FLATFILE">
+    <FileNode>
+      <FileField dataType="JDBC_varChar" fractionDigits="0" length="0" maxLength="0" minLength="0" name="New_Field" startPosition="1" totalDigits="0"/>
+    </FileNode>
+  </MetadataComposite>
+  <MetadataComposite componentID="_fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF$New_Record" contentModelType="SEQUENCE" nodeType="FILE_RECORD" syntax="FLATFILE">
+    <FileNode>
+      <FileRecord recordLength="0" recordName="New_Record"/>
+    </FileNode>
+    <RelationshipDescriptor componentID="_fqn:/com.customer.b2bcloud.core.SystemCheck.dummyFF$New_Record.New_Field" conditional="false" maximumOccurs="1" minimumOccurs="1" repeating="false" required="false" unbounded="false"/>
+  </MetadataComposite>
+</DataSet>

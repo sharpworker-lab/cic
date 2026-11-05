@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/ClarifyDatabaseDS$JdbcDriver.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS$JdbcDriver" componentType="12" name="com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS$JdbcDriver">
+  </ConfigurationComponent>
+?>
+<JDBCDriver xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="JDBCDriver.xsd" className="org.postgresql.Driver" description="fqn:/com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS$JdbcDriver" id="_fqn:/com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS$JdbcDriver" name="fqn:/com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS$JdbcDriver" version="Deployed">
+  <JDBCClassPath classpathID="_irn:/00000000000000000000000000000001">
+    <JDBCClasspathEntry path="&lt;com.extol.ebi.globalvariable.lib.GlobalVariables.JDBC_DRIVER>"/>
+  </JDBCClassPath>
+</JDBCDriver>

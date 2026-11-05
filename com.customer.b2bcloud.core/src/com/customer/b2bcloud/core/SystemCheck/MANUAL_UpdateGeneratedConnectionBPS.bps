@@ -1,0 +1,39 @@
+#content/*bps 2 */
+package com.customer.b2bcloud.core.SystemCheck;
+
+def bps MANUAL_UpdateGeneratedConnectionBPS {
+
+	def execute() {
+		var String vActiveCount
+		var String c0="0"
+		var String vReceivedOnlyCount
+		var String vDateLong
+		var StorageNode input
+		var StorageNode targetContext
+		var String vReceivedUnwrappedCount
+		var String vGeneratedStatusCount="0"
+		var String vSubject
+		var String vDateMinusDayLong
+
+		step {
+			new ConvertStringToStorageNode().execute("dummy", input)
+		} next : end 
+		step {
+			new com.customer.b2bcloud.core.SystemCheck.convertDateRS().execute(input, unset, new
+			com.customer.b2bcloud.core.SystemCheck.defaultTS, unset, unset, targetContext)
+		} next : end 
+		step {
+			new GetContextPointValue().execute(targetContext, "env.var.User_Reference_1", vDateLong)
+		} next : end 
+		step {
+			new GetContextPointValue().execute(targetContext, "env.var.User_Reference_2", vDateMinusDayLong)
+		} next : end 
+		step generatedStatus {
+			new com.customer.b2bcloud.core.SystemCheck.UpdateGeneratedConnectionSQL$BpsTask().execute(vDateLong, vActiveCount)
+		} next : end 
+		step {
+			new SetExitStatus().execute(true)
+		} end : end 
+	}
+
+}

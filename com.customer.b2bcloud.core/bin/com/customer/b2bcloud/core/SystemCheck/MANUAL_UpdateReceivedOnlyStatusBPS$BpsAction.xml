@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/MANUAL_UpdateReceivedOnlyStatusBPS$BpsAction.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS$BpsAction" componentType="3" name="com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS$BpsAction">
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS"/>
+  </ConfigurationComponent>
+?>
+<Action xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Action.xsd" actionID="_fqn:/com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS$BpsAction" category="Process Scripts" name="com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS$BpsAction" readOnly="false">
+  <ScriptLauncher scriptID="fqn:/com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS"/>
+</Action>

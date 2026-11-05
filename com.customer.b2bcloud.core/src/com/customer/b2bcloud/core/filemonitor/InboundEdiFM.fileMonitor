@@ -1,0 +1,13 @@
+package com.customer.b2bcloud.core.filemonitor ;
+
+def fileMonitor InboundEdiFM {
+	def start () {
+		pollDirectory = "<com.customer.b2bcloud.core.B2BCloudGV.ClarifyCustom>In/EDI/"
+		pollingInterval = 1
+		pollingIntervalUnitTime = Minutes
+		archiveDirectory = "<com.customer.b2bcloud.core.B2BCloudGV.ClarifyCustom>Archive/In/EDI/"
+	}
+	def dispatchOnFile () {
+			new com.customer.b2bcloud.core.events.PreReceiveEDIEV().execute(null)
+	}
+}

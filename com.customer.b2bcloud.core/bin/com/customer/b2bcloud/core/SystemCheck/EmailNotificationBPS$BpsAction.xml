@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/EmailNotificationBPS$BpsAction.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS$BpsAction" componentType="3" name="com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS$BpsAction">
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS"/>
+  </ConfigurationComponent>
+?>
+<Action xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Action.xsd" actionID="_fqn:/com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS$BpsAction" category="Process Scripts" name="com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS$BpsAction" readOnly="false">
+  <ScriptLauncher scriptID="fqn:/com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS"/>
+  <ActionParameter direction="1" displaySequence="0" index="0" name="failureInput" required="true" single="true">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="2" displaySequence="1" index="1" name="failureOutput" required="false" single="false">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+</Action>

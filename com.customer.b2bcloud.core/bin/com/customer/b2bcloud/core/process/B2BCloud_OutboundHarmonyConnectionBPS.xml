@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/process/B2BCloud_OutboundHarmonyConnectionBPS.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.process.B2BCloud_OutboundHarmonyConnectionBPS" componentType="6" name="com.customer.b2bcloud.core.process.B2BCloud_OutboundHarmonyConnectionBPS">
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA"/>
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundAdapterAD"/>
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.process.B2BCloudStandardErrorBPS"/>
+  </ConfigurationComponent>
+?>
+<ProcessControlScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProcessControlScript.xsd">
+  <BPScript scriptID="_fqn:/com.customer.b2bcloud.core.process.B2BCloud_OutboundHarmonyConnectionBPS" templateID="_e20edba0264d41099f1eafc1d2ab42c4" name="com.customer.b2bcloud.core.process.B2BCloud_OutboundHarmonyConnectionBPS" version="1.0" destination="topic/Engine" visible="true" editable="true">
+    <Argument name="true" type="CONSTANT" required="true" mappable="true" value="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <Argument name="inputStorageNode" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="ediEnveloper" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.collaboration.LiteEndpoint"/>
+    </Argument>
+    <Argument name="connectionLogId" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="partner" type="CONNECTION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="documentId" type="CONNECTION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="extension" type="CONNECTION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="partnerDirectory" type="CONNECTION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="protocol" type="CONNECTION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="EndPoint" type="CONNECTION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.ebi.bps2.lib.types.CloudEndpoint"/>
+    </Argument>
+    <Argument name="filName" type="CONNECTION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="dateTime" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.util.Date"/>
+    </Argument>
+    <Argument name="datestimestring" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="filename" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="vBPS" type="CONSTANT" required="true" mappable="true" value="Base Outbound Harmony Connection Business Process - ">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="vErrorSubject" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="_ebi3_stringliteral0" type="CONSTANT" required="true" mappable="true" value="yyyyMMddHHmmssSSS">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="_ebi3_stringliteral1" type="CONSTANT" required="true" mappable="true" value="_">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="_ebi3_stringliteral2" type="CONSTANT" required="true" mappable="true" value="_">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="_ebi3_booleanliteral0" type="CONSTANT" required="true" mappable="true" value="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <Argument name="_ebi3_booleanliteral1" type="CONSTANT" required="true" mappable="true" value="false">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <BPStep stepID="_irn:/00000000000000000000000000000001" label="" nextPass="NEXT" nextPassI="1" nextFail="END" nextFailI="-1" enabled="true" parms="2">
+      <LiteBPScript scriptID="_fc114455db434109bb958c9b9e4783e2" name="Set Connection Parameter Values" version="1.0">
+        <Argument name="Endpoint" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.collaboration.LiteEndpoint"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000002" label="" nextPass="NEXT" nextPassI="2" nextFail="END" nextFailI="-1" enabled="true" parms="11">
+      <LiteBPScript scriptID="_f1515c0f957941128b24d5957f094767" name="Date - Get Current Date" version="1.0">
+        <Argument name="Current Date" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.util.Date"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000003" label="" nextPass="NEXT" nextPassI="3" nextFail="END" nextFailI="-1" enabled="true" parms="12,11,16">
+      <LiteBPScript scriptID="_8c5af37b96984112b7478c4ee6982892" name="Date - Convert to String" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.util.Date"/>
+        </Argument>
+        <Argument name="Date Format" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000004" label="" nextPass="NEXT" nextPassI="4" nextFail="END" nextFailI="-1" enabled="true" parms="13,4,17">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000005" label="" nextPass="NEXT" nextPassI="5" nextFail="END" nextFailI="-1" enabled="true" parms="13,13,5">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000006" label="" nextPass="NEXT" nextPassI="6" nextFail="END" nextFailI="-1" enabled="true" parms="13,13,18">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000007" label="" nextPass="NEXT" nextPassI="7" nextFail="END" nextFailI="-1" enabled="true" parms="13,13,12">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000008" label="" nextPass="NEXT" nextPassI="9" nextFail="END" nextFailI="-1" enabled="true" parms="13,13,6">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000009" label="" nextPass="NEXT" nextPassI="9" nextFail="Failure" nextFailI="11" enabled="false" parms="-1,1,13,7,8">
+      <LiteBPScript scriptID="_irn:/00000000000000000000000000000010" name="Execute Adapter: com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" version="1.0">
+        <Argument name="Adapter Configuration" type="PARAMETER" required="true" mappable="false" value="fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA">
+          <classOfArgumentValue classOfArgumentValue="com.extol.adapters.LiteAdapterConfiguration"/>
+        </Argument>
+        <Argument name="storageNodes" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+          <classOfArgumentValue classOfArgumentValue="com.extol.businessprocess.ArrayWrapper"/>
+        </Argument>
+        <Argument name="filename" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="partnerDirectory" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="protocol" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000011" label="" nextPass="NEXT" nextPassI="10" nextFail="END" nextFailI="-1" enabled="true" parms="-1,1,9,10">
+      <LiteBPScript scriptID="_irn:/00000000000000000000000000000012" name="Execute Adapter: com.customer.b2bcloud.core.adapters.WriteOutboundAdapterAD" version="1.0">
+        <Argument name="BpTaskAdapter" type="PARAMETER" required="true" mappable="false" value="com.customer.b2bcloud.core.adapters.WriteOutboundAdapterAD">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Payload" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="OverrideEndpoint" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.ebi.bps2.lib.types.CloudEndpoint"/>
+        </Argument>
+        <Argument name="Filname" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000013" label="" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="19">
+      <LiteBPScript scriptID="_39d614240ea84103b88fb5f8c6d90673" name="Set Exit Status" version="1.0">
+        <Argument name="Status" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000014" label="Failure" nextPass="NEXT" nextPassI="12" nextFail="END" nextFailI="-1" enabled="true" parms="15,14,7">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000015" label="" nextPass="NEXT" nextPassI="13" nextFail="END" nextFailI="-1" enabled="true" parms="15">
+      <LiteBPScript scriptID="fqn:/com.customer.b2bcloud.core.process.B2BCloudStandardErrorBPS" name="B2BCloudStandardErrorBPS" version="1.0">
+        <Argument name="bpsName" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000016" label="" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="20">
+      <LiteBPScript scriptID="_39d614240ea84103b88fb5f8c6d90673" name="Set Exit Status" version="1.0">
+        <Argument name="Status" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+  </BPScript>
+  <BPScript scriptID="_irn:/00000000000000000000000000000010" name="Execute Adapter: com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" version="1.0" destination="topic/Comm" visible="true" editable="false">
+    <Argument name="Adapter Configuration" type="PARAMETER" required="true" mappable="false" value="fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA">
+      <classOfArgumentValue classOfArgumentValue="com.extol.adapters.LiteAdapterConfiguration"/>
+    </Argument>
+    <Argument name="storageNodes" type="PARAMETER" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+      <classOfArgumentValue classOfArgumentValue="com.extol.businessprocess.ArrayWrapper"/>
+    </Argument>
+    <Argument name="filename" type="PARAMETER" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="partnerDirectory" type="PARAMETER" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="protocol" type="PARAMETER" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+  </BPScript>
+  <BPScript scriptID="_irn:/00000000000000000000000000000012" name="Execute Adapter: com.customer.b2bcloud.core.adapters.WriteOutboundAdapterAD" version="1.0" destination="topic/BpTaskAdapter" visible="true" editable="false">
+    <Argument name="BpTaskAdapter" type="PARAMETER" required="true" mappable="false" value="com.customer.b2bcloud.core.adapters.WriteOutboundAdapterAD">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="Payload" type="PARAMETER" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="OverrideEndpoint" type="PARAMETER" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.ebi.bps2.lib.types.CloudEndpoint"/>
+    </Argument>
+    <Argument name="Filname" type="PARAMETER" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+  </BPScript>
+</ProcessControlScript>

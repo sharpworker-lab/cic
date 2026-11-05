@@ -1,0 +1,45 @@
+package com.customer.b2bcloud.core.process;
+
+def bps B2BCloudStandardErrorBPS {
+
+	def execute(String bpsName) {
+		var String sendEmailFrom
+		var String sendEmailTo
+		var String sendEmailSubjectFinal
+		var String environment
+		var String ClarifyHostEmail="<com.customer.b2bcloud.core.B2BCloudGV.B2BCloudHostEmail>"
+		var String eBIAdministratorEmail="<com.customer.b2bcloud.core.B2BCloudGV.B2BCloudAdminEmail>"
+		var String sendEmailSubject="Clarify encountered a failure - BPS:  "
+		var String sendEmailMessage="Clarify encountered an error.  Please review the process logs."
+		var Boolean setExitStatusSuccess=true
+		var Boolean setExitStatusFailure=false
+		var String environment_1="<com.customer.b2bcloud.core.B2BCloudGV.Environment>"
+
+		step {
+			new ResolveGlobalVariables().execute(sendEmailFrom, ClarifyHostEmail)
+		} next : end 
+		step {
+			new ResolveGlobalVariables().execute(sendEmailTo, eBIAdministratorEmail)
+		} next : end 
+		step {
+			new ResolveGlobalVariables().execute(environment, environment_1)
+		} next : end 
+		step {
+			new AppendString().execute(sendEmailSubjectFinal, environment, sendEmailSubject)
+		} next : end 
+		step {
+			new AppendString().execute(sendEmailSubjectFinal, sendEmailSubjectFinal, bpsName)
+		} next : end 
+		step {
+			new SendEmail().execute(sendEmailTo, sendEmailFrom, null, null, sendEmailSubjectFinal, sendEmailMessage, null,
+			null)
+		} next : end 
+		step Success {
+			new SetExitStatus().execute(setExitStatusSuccess)
+		} end : end 
+		step Failure {
+			new SetExitStatus().execute(setExitStatusFailure)
+		} end : end 
+	}
+
+}

@@ -1,0 +1,10 @@
+package com.customer.b2bcloud.core.events;
+
+def event B2BCloud_ExitPointInterchangeProcessedEV {
+
+	def execute(StorageNode payload, EdiDataMap interchangeProperties) {
+		new com.customer.b2bcloud.core.process.B2BCloud_InterchangeProcessedEventBPS().execute(payload,
+		interchangeProperties)
+	}
+
+}

@@ -1,0 +1,9 @@
+package com.customer.b2bcloud.core.actions
+
+def formula NormalizedInputNENormalizedValueFOR {
+
+	def Boolean execute(String input, String value) {
+		formulaText = "input normalize_space != value normalize_space"
+	}
+
+}

@@ -1,0 +1,20 @@
+#content /*sqlaccess 2 */ package com.customer.b2bcloud.core.SystemCheck;
+
+def sqlAccess UpdateLogOfMessageSQL {
+
+	def execute(String date, String activeCount) {
+		bindInput(typeof(BIGINT), date)
+		bindOutput(typeof(VARCHAR), activeCount)
+
+		dataSource = new com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS
+		statement = "update \"EBI\".\"LOG_OF_MESSAGE\" SET \"STATUS\" = \'9\' where (\"EBI\".\"LOG_OF_MESSAGE\".\"STATUS\" = \'26\' and \"EBI\".\"LOG_OF_MESSAGE\".\"MESSAGE_ID\" != \'CONTRL\')  and \"DATE\" < ${date}"
+
+		timeout [
+			timeUnit = Seconds
+		]
+
+		retry [
+			timeUnit = Seconds
+		]
+	}
+}

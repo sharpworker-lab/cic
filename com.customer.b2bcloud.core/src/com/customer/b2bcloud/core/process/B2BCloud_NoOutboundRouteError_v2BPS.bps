@@ -1,0 +1,60 @@
+#content/*bps 2 */
+package com.customer.b2bcloud.core.process;
+
+def bps B2BCloud_NoOutboundRouteError_v2BPS {
+
+	def execute(String messageType, String tpId, StorageNode sourceDataGroup) {
+		var String sendEmailFrom
+		var String sendEmailTo
+		var String subjectFull
+		var String messageFull
+		var String environment
+		var Boolean setExitStatusSuccess=true
+		var Boolean setExitStatusFailure=false
+		var String subject1="xxx ERROR: Clarify - zzz - No Outbound Route Found"
+		var String
+		message1="Cleo Clarify B2B Cloud could not match the attached data to an Outbound Route for the following:\\n\\nTP ID: yyy\\nMessage Type: Outbound qqq"
+		var String environment_1="<com.rugdoctor.core.b2bcloud.B2BCloudGV.Environment>"
+		var String attachmentName1="uuu_Outbound_vvv.txt"
+		var String attachmentNameFull
+
+		step {
+			new ResolveGlobalVariables().execute(sendEmailTo, "<com.rugdoctor.core.b2bcloud.B2BCloudGV.B2BCloudAdminEmail>")
+		} next : FAILURE
+		step {
+			new ResolveGlobalVariables().execute(sendEmailFrom, "<com.rugdoctor.core.b2bcloud.B2BCloudGV.B2BCloudHostEmail>")
+		} next : FAILURE
+		step {
+			new ResolveGlobalVariables().execute(environment, environment_1)
+		} next : FAILURE
+		step subject1 {
+			new ReplaceString().execute(subjectFull, subject1, "xxx", environment)
+		} next : FAILURE
+		step subject2 {
+			new ReplaceString().execute(subjectFull, subjectFull, "zzz", messageType)
+		} next : FAILURE
+		step message1 {
+			new ReplaceString().execute(messageFull, message1, "yyy", tpId)
+		} next : FAILURE
+		step message2 {
+			new ReplaceString().execute(messageFull, messageFull, "qqq", messageType)
+		} next : FAILURE
+		step attachment1 {
+			new ReplaceString().execute(attachmentNameFull, attachmentName1, "uuu", tpId)
+		} next : FAILURE
+		step attachment2 {
+			new ReplaceString().execute(attachmentNameFull, attachmentNameFull, "vvv", messageType)
+		} next : FAILURE
+		step {
+			new SendEmail().execute(sendEmailTo, sendEmailFrom, null, null, subjectFull, messageFull, sourceDataGroup,
+			attachmentNameFull)
+		} next : FAILURE
+		step SUCCESS {
+			new SetExitStatus().execute(setExitStatusSuccess)
+		} end : end 
+		step FAILURE {
+			new SetExitStatus().execute(setExitStatusFailure)
+		} end : end 
+	}
+
+}

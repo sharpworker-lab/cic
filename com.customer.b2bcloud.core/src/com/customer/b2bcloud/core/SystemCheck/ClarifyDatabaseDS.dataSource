@@ -1,0 +1,7306 @@
+package com.customer.b2bcloud.core.SystemCheck ;
+
+def dataSource ClarifyDatabaseDS {
+
+	def connect() {
+		jdbcDriver {
+			driverName = "org.postgresql.Driver"
+			classpathEntries {
+				"<com.extol.ebi.globalvariable.lib.GlobalVariables.JDBC_DRIVER>"
+			}
+		}
+		url = "<com.extol.ebi.globalvariable.lib.GlobalVariables.URL>"
+		catalog = ""
+		defaultSchema = "EBI"
+		username = "<com.extol.ebi.globalvariable.lib.GlobalVariables.USERNAME>"
+		password = "<com.extol.ebi.globalvariable.lib.GlobalVariables.PASSWORD>"
+	}
+
+	def databaseMetaData() {
+		schema "EBI" {
+			table "ACKNOWLEDGEMENT" {
+				column "ACK_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "USER_DEFINED_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "VERSION" {
+					jdbcTypeName = "VARCHAR"
+					size = 128
+					nillable = true
+				}
+				column "DESCRIPTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "SOURCE_ENDPOINT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "TARGET_ENDPOINT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ACK_LEVEL_TO_SEND" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "FA_SCHEMA_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "FA_MESSAGE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "VALIDATING_SCHEMA_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "X12_TA_ONE" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "0"
+					size = 5
+				}
+				column "ENABLED" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "1"
+					size = 5
+				}
+			}
+			table "ACKNOWLEDGEMENT_DETAIL" {
+				column "LOG_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "LOG_TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "SEQUENCE_NUMBER" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "nextval(\'\"EBI\".\"ACKNOWLEDGEMENT_DETAIL_SEQUENCE_NUMBER_seq\"\'::regclass)"
+					size = 10
+				}
+				column "MESSAGE_AREA" {
+					jdbcTypeName = "VARCHAR"
+					size = 2
+					nillable = true
+				}
+				column "SEGMENT_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "SEGMENT_POSITION_IN_MSG" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "LOOP_ID_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "SEGMENT_SYNTAX_ERROR_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "SECURITY_REFERENCE_NUMBER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "SECURITY_SEGMENT_POSITION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ELEMENT_POSITION_IN_SEGMENT" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ELEMENT_POSITION_IN_COMPOSITE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ELEMENT_OCCURENCE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ELEMENT_REF_NUMBER" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "ELEMENT_SYNTAX_ERROR_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "COPY_OF_BAD_DATA_ELEMENT" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "CONTEXT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "ACKNOWLEDGEMENT_ERROR_ACTION" {
+				column "ACK_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "SEQUENCE_NUMBER" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "nextval(\'\"EBI\".\"ACKNOWLEDGEMENT_ERROR_ACTION_SEQUENCE_NUMBER_seq\"\'::regclass)"
+					size = 10
+				}
+				column "ACKNOWLEDGEMENT_LEVEL" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ERROR_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ERROR_CODE_DESCRIPTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 128
+					nillable = true
+				}
+				column "ACTION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "ACTIVE_PROCESS" {
+				column "PROCESS_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "PROCESS_ID_USERREF" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PARENT_PROCESS_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PARAMETERS" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "DEFINITION_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ORIGINATING_DESTINATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PROCESSSTATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "STEP_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "USER_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ORIGINATING_LOG_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ORIGINATING_LOG_TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "ARTIFACTS" {
+				column "Id" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Type" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+				}
+				column "Label" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+					nillable = true
+				}
+				column "Name" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "Description" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+					nillable = true
+				}
+			}
+			table "ARTIFACT_DEPENDENCIES" {
+				column "Id" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ParentId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "refCount" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "0"
+					size = 5
+				}
+			}
+			table "AUDITOR_LOG_FILTER_GROUPING" {
+				column "LOG_GROUPING_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "LOG_FILTER_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "DISPLAY_INDEX" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+			}
+			table "AUDITOR_LOG_GROUPING" {
+				column "GROUPING_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "USER_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "USER_DEFINED_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 255
+					nillable = true
+				}
+				column "AUDITOR_DEFAULT" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+			}
+			table "Action" {
+				column "ActionID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Name" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "Subtype" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+				column "Category" {
+					jdbcTypeName = "VARCHAR"
+					size = 50
+				}
+				column "Readonly" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+				}
+				column "FormulaText" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "BuiltinsOps" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "CodeTableID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "className" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "methodName" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "classPath" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "ScriptID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "DataSourceID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "StatementString" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "Timeout" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "UseCache" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "0"
+					size = 5
+				}
+				column "MultipleRecordAction" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "0"
+					size = 5
+				}
+				column "SQLActionInputTypes" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "Callable" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "0"
+					size = 5
+				}
+				column "NoRecordAction" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "8161"
+					size = 5
+				}
+				column "Retries" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "0"
+					size = 5
+				}
+				column "RetryInterval" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "TimeoutUOT" {
+					jdbcTypeName = "VARCHAR"
+					size = 4
+					nillable = true
+				}
+				column "RetryUOT" {
+					jdbcTypeName = "VARCHAR"
+					size = 4
+					nillable = true
+				}
+			}
+			table "ActionParameter" {
+				column "ActionID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Sequence" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "Name" {
+					jdbcTypeName = "VARCHAR"
+					size = 50
+				}
+				column "Direction" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "Required" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+				}
+				column "Single" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+				}
+				column "Displayseq" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "ActionTypes" {
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+			}
+			table "AdapterConfiguration" {
+				column "uuid" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "adapterType" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "interactionSpec" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 1280
+				}
+				column "version" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "parentId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "AdapterConfigurationValues" {
+				column "uuid" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "uuidParent" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "key" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+				}
+				column "classReference" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+				}
+				column "value" {
+					jdbcTypeName = "VARCHAR"
+					size = 32672
+					nillable = true
+				}
+			}
+			table "AllowedDataTypes" {
+				column "ActionID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Sequence" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "ImpExpIdentifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 50
+				}
+				column "Displayseq" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "ApplicationEndpointFieldNames" {
+				column "index" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "ApplicationEndpoints" {
+				column "endpointID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "attributeValue1" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue2" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue3" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue4" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue5" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue6" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue7" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue8" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue9" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue10" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue11" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue12" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue13" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue14" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue15" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue16" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue17" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue18" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue19" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "attributeValue20" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+			}
+			table "ApplicationPropertySetValues" {
+				column "ApplicationPropertySetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Key" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "Value" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+					nillable = true
+				}
+			}
+			table "ApplicationPropertySets" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Type" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "Hashtotal" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "UserDefinedID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "Version" {
+					jdbcTypeName = "VARCHAR"
+					size = 30
+				}
+				column "Description" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+			}
+			table "AppliedDataSets" {
+				column "ruleSetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "dataSetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "appliedDataSetType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "BPScriptCategories" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Title" {
+					jdbcTypeName = "VARCHAR"
+					size = 30
+				}
+			}
+			table "BPScriptGraphNodeLocations" {
+				column "ScriptID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ObjectID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "XCoordinate" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "YCoordinate" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "NodeType" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "Label" {
+					jdbcTypeName = "VARCHAR"
+					size = 2147483647
+					nillable = true
+				}
+			}
+			table "COLUMN_UPDATE_ACTION" {
+				column "DATA_SOURCE_MAP_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TABLE_VIEW_INDEX" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "LIST_POSITION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "COLUMN_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "INDEX_COLUMN" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PASS_ACTION_TYPE_ID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PASS_VALUE" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "FAIL_ACTION_TYPE_ID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "FAIL_VALUE" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "HASH_TOTAL" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+			}
+			table "CollaborationCategories" {
+				column "categoryID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 128
+				}
+				column "processID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "CollaborationErrorAction" {
+				column "COLLAB_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "SEQUENCE_NUMBER" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "nextval(\'\"EBI\".\"CollaborationErrorAction_SEQUENCE_NUMBER_seq\"\'::regclass)"
+					size = 10
+				}
+				column "ACKNOWLEDGEMENT_LEVEL" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ERROR_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ERROR_CODE_DESCRIPTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 255
+					nillable = true
+				}
+				column "ACTION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "CollaborationProfiles" {
+				column "collaborationID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "sourceID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "targetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "scriptID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "categoryID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "enabled" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "order" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "mappings" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+			}
+			table "CompositeDataGroupings" {
+				column "DataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "RootComponentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "GroupedComponentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Instance" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "ContextPointTranslations" {
+				column "SchemaID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Type" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+				}
+				column "InternalComponentName" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+				}
+				column "UserDefinedComponentName" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+				}
+			}
+			table "CtrlNumGen" {
+				column "id" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "algorithm" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "lastNumber" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+				}
+			}
+			table "DATA_SET_SCHEMA" {
+				column "DATA_SET_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "STORAGE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "DBLogin" {
+				column "username" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+				}
+				column "password" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+				}
+				column "userID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "DB_BOOTED" {
+				column "DB_BOOTED" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+					nillable = true
+				}
+			}
+			table "DB_FILE_RECORD_KEY" {
+				column "DATA_SET_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "RECORD_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "FIELD_KEY_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "SEQUENCE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "RELATED_RECORD_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "RELATED_FIELD_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "SORT_SEQUENCE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+			}
+			table "DEFINITION" {
+				column "DEFINITION_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TEMPLATE_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "EDITABLE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DESTINATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "VARIABLES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "VISIBLE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "VERSION" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "CATEGORY_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+					nillable = true
+				}
+				column "DESCRIPTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 2147483647
+					nillable = true
+				}
+			}
+			table "DEPLOYMENT_EXPORT_FILE" {
+				column "PROJECT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "EXPORT_FILE_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "EXPORT_FILE_FQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "EXPORT_FILE_TYPE" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+					nillable = true
+				}
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "HASH_TOTAL" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+					nillable = true
+				}
+			}
+			table "DEPLOYMENT_EXPORT_FILE_FQN" {
+				column "PROJECT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "EXPORT_FILE_FQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "FQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "DEPLOYMENT_EXPORT_FILE_IRN" {
+				column "PROJECT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "EXPORT_FILE_FQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "IRN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "DEPLOYMENT_EXPORT_FILE_REFERENCE" {
+				column "REFERENCING_PROJECT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "REFERENCING_FQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "REFERENCED_PROJECT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "REFERENCED_FQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+			}
+			table "DEPLOYMENT_STATE" {
+				column "IS_DEPLOYING" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "JVM_HARD_KILLED_DURING_DEPLOYMENT" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+			}
+			table "DataNodeTable" {
+				column "dataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "componentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+				}
+				column "enumerated" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "contentModel" {
+					jdbcTypeName = "VARCHAR"
+					size = 20
+					nillable = true
+				}
+				column "dataTypeID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "length" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "minLength" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "maxLength" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "minInclusive" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "maxInclusive" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "minExclusive" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "maxExclusive" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "whiteSpaceID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "pattern" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "totalDigits" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "fractionDigits" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "startPosition" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nullValueType" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "nullValueLength" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nullValueValue" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "attributeTypeID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "attributeDefaultTypeID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "attributeDefaultValue" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+			}
+			table "DataNodeValuesTable" {
+				column "dataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "componentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "parentEnumeratedListIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "value" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "valueDescription" {
+					jdbcTypeName = "VARCHAR"
+					size = 500
+					nillable = true
+				}
+			}
+			table "DataSetTable" {
+				column "dataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "syntaxCategoryID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "rootComponentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "dictionaryDataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "userDefinedID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "version" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 1280
+					nillable = true
+				}
+				column "hashCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+					nillable = true
+				}
+				column "sourceTarget" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "flatDataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "schemaStorageID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "schemaName" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "importProperties" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "ediElmAllowedVal" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "DataSourceAssociationMaps" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Description" {
+					jdbcTypeName = "VARCHAR"
+					size = 1280
+				}
+				column "DataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "TransactionLevel" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "HashTotal" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "AutoTruncate" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+					nillable = true
+				}
+				column "Mode" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "1"
+					size = 5
+					nillable = true
+				}
+			}
+			table "DataSourceAssociations" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "DataSourceID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "DataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "RecordFormat" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TableView" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+				column "TableViewIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "UserName" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "Password" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+			}
+			table "DataSourceTableViews" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TableViewIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "TableView" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+			}
+			table "DataSources" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Description" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "JDBCDriver" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "DatabaseURL" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "Catalog" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "Schema" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "DefaultUser" {
+					jdbcTypeName = "VARCHAR"
+					size = 1280
+					nillable = true
+				}
+				column "DefaultPassword" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "HashTotal" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+			}
+			table "EBI_OBJECTS_PROJECT_VERSIONS" {
+				column "PROJECT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "PROJECT_VERSION" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+			}
+			table "EBI_ROLES" {
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "permissions" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+			}
+			table "EBI_USERS" {
+				column "userId" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "password" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+			}
+			table "EBI_USER_ROLES" {
+				column "userId" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+				}
+				column "roleName" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+				}
+			}
+			table "EDIEndpoints" {
+				column "endpointID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "stdType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "targetEnvelopeId" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "targetDBP" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "mappings" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "mappingHash" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "targetLimits" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "intControl" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "intInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "grpControl" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "grpInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "msgControl" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "msgInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "ACK_REQUEST_TIME_QTY" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ACK_REQUEST_UNIT_OF_TIME" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "targetConnWrapType" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "8193"
+					size = 10
+					nillable = true
+				}
+				column "ENCODINGCHARSET" {
+					jdbcTypeName = "VARCHAR"
+					defaultValueLiteral = "\'UTF-8\'::character varying"
+					size = 40
+				}
+				column "enableFixedWrap" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "fixedWrapLength" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "80"
+					size = 10
+				}
+				column "duplicateInterchangeAction" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "6402"
+					size = 10
+					nillable = true
+				}
+				column "lastSentInterchangeControl" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "lastRecvInterchangeControl" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "SENDERID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "SENDERIDQUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RECEIVERID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RECEIVERIDQUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "ELEMENTDELIMITER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "SEGMENTDELIMITER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "SUBELEMENTDELIMITER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "DECIMALNOTATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RELEASEINDICATORCHARACTER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RESERVEDSPACEINUNA" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "REPETITIONSEPERATOR" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERCHANGEVERSIONID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "ROUTINGADDRESS" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "ADDRESSFORREVERSEROUTING" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "AUTHORIZATIONQUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "AUTHORIZATIONINFORMATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "SECURITYQUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "SECURITYINFORMATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "STANDARDSCLASS" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INDUSTRYGROUP" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "TESTPRODUCTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "MESSAGEID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "APPLICATIONREFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "PRIORITYCODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERCHANGEACKREQUESTED" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "COMMUNICATIONSAGREEMENT" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "APPLICATIONSENDERID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "APPLICATIONSENDERIDQUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "APPLICATIONRECEIVERID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "APPLICATIONRECEIVERIDQUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "APPLICATIONPASSWORD" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "CONTROLLINGAGENCY" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "VERSIONRELEASE" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INDUSTRYCODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "GROUPCODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "CODELISTDIRVER" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "MSGSUBTYPEID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "targetDBPInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "targetLimitsInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "BUCKET_ID" {
+					jdbcTypeName = "CHAR"
+					defaultValueLiteral = "\'111111111111111111\'::bpchar"
+					size = 32
+				}
+				column "IS_VALID" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "\'-1\'::integer"
+					size = 10
+				}
+			}
+			table "EDI_APPCONFIG" {
+				column "Id" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Name" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+				}
+				column "Description" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+					nillable = true
+				}
+				column "SourceDatasetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "AppAnalysisRulesetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "EDI_APPCONFIG_ENDPT_FLDNAMES" {
+				column "Id" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ParentId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Name" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+				}
+				column "NameIndex" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+				}
+			}
+			table "EO" {
+				column "type" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "id" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "EXIT_POINT_EVENT" {
+				column "EVENT_TYPE_ID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "EVENT_TYPE_ENABLED" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "0"
+					size = 5
+				}
+				column "MODE_TYPE_ID" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "EVENT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 255
+					nillable = true
+				}
+			}
+			table "EndpointContacts" {
+				column "endpointID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "contactID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Name" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "Organization" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "AddressLine1" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "AddressLine2" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "City" {
+					jdbcTypeName = "VARCHAR"
+					size = 24
+					nillable = true
+				}
+				column "State" {
+					jdbcTypeName = "VARCHAR"
+					size = 24
+					nillable = true
+				}
+				column "Zipcode" {
+					jdbcTypeName = "VARCHAR"
+					size = 10
+					nillable = true
+				}
+				column "PhoneNumber" {
+					jdbcTypeName = "VARCHAR"
+					size = 24
+					nillable = true
+				}
+				column "EmailAddress" {
+					jdbcTypeName = "VARCHAR"
+					size = 128
+					nillable = true
+				}
+			}
+			table "Endpoints" {
+				column "endpointID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "type" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "groupID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "defaultCollabCat" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "inheritMap" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "TRADING_PARTNER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+			}
+			table "FTPCommands" {
+				column "cmdID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "index" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "command" {
+					jdbcTypeName = "VARCHAR"
+					size = 128
+					nillable = true
+				}
+			}
+			table "FrameworkCategoryTree" {
+				column "userUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "nodeDescription" {
+					jdbcTypeName = "VARCHAR"
+					size = 60
+				}
+				column "expanded" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "FrameworkConfigDetail" {
+				column "userUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "classReference" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 60
+					nillable = true
+				}
+				column "objectUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "sequence" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "active" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "alternateCommand" {
+					jdbcTypeName = "VARCHAR"
+					size = 20
+					nillable = true
+				}
+			}
+			table "FrameworkConfigHeader" {
+				column "userUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "x" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "y" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "width" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "height" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "defaultTabView" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "splitterLocation" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "FrameworkContainer" {
+				column "userUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 254
+					nillable = true
+				}
+				column "containerUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "parentUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "creationDate" {
+					jdbcTypeName = "TIMESTAMP"
+					size = 29
+					decimalDigits = 6
+				}
+				column "rootContainer" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "expanded" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "type" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+			}
+			table "FrameworkNodes" {
+				column "userUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "containerUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "objectUUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "objectClassIdentifier" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "creationDate" {
+					jdbcTypeName = "TIMESTAMP"
+					size = 29
+					decimalDigits = 6
+				}
+			}
+			table "GSSV" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "GSSVKey" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "GSSVValue" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "ResolveAtRuntime" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "0"
+					size = 5
+				}
+			}
+			table "InternalEntities" {
+				column "tableID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Name" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "Type" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "DefaultValue" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "CaseSensitive" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+				}
+			}
+			table "InternalEntityDoubleData" {
+				column "tableID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Key1" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+				column "Key2" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+				column "Value" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+			}
+			table "InternalEntitySingleData" {
+				column "tableID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Key" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+				column "Value" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+			}
+			table "JDBCClasspaths" {
+				column "classpathID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "classpath" {
+					jdbcTypeName = "VARCHAR"
+					size = 4092
+				}
+				column "order" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "JDBCDrivers" {
+				column "driverID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "classpathID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+				}
+				column "version" {
+					jdbcTypeName = "VARCHAR"
+					defaultValueLiteral = "\'1.0\'::character varying"
+					size = 30
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+				column "classname" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+			}
+			table "LATE_ACK_BUCKET" {
+				column "BUCKET_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "BUCKET_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "TIME_THRESHOLD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "TIME_THRESH_UOM" {
+					jdbcTypeName = "CHAR"
+					size = 1
+				}
+				column "EVENT_TYPE" {
+					jdbcTypeName = "VARCHAR"
+					size = 255
+					nillable = true
+				}
+				column "IS_RECURRING" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+			}
+			table "LDAP_CONFIG" {
+				column "hostUrl" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "accountName" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "password" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "searchBase" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "searchFilter" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "typeId" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "isEnabled" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "LDAP_MAPPINGS" {
+				column "hostUrl" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "group" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "role" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+				}
+			}
+			table "LOG_OF_ACKNOWLEDGEMENT" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "PROCESS_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "MESSAGE_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "VERSION_RELEASE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "SENDER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RECEIVER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "SEGMENT_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+			}
+			table "LOG_OF_APPLICATION_DATA" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "DIRECTION_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "FUNCTION_STATUS_AP_DATA" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "IN_PROCESS_STATUS_APPL" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "DATE_TIME_CREATED" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "APPLICATION_DATA_TEXT" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "MSG_QUEUE_APPLICATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "APPLICATION_FILE_SET" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "APPLICATION_DATA_LOCATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "START_NONWRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "END_NONWRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "USER_REFERENCE_1" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_2" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_3" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_4" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_5" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+			}
+			table "LOG_OF_APP_BATCH" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "SOURCE_BP" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "LOG_OF_APP_MESSAGE" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "MESSAGE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "MESSAGE_DIRECTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+			}
+			table "LOG_OF_BATCH" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "LOG_OF_COLLABORATION" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "COLLABORATION_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "CONNECTION_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "INTERCHANGE_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "GROUP_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "MESSAGE_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "COLLABORATION_PROFILE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "CONTEXT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "DATA_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PROCESS_DEFINITION_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "ENDPOINT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "SENDER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RECEIVER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERCHANGE_CONTROL_REF" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "TEST_INDICATOR" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "GROUP_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "GROUP_CONTROL_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "STANDARD_CLASS" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "INDUSTRY_GROUP" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "VERSION_RELEASE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "INDUSTRY_GROUP_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "MESSAGE_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "MESSAGE_CONTROL_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "USER_REFERENCE_1" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_2" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_3" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_4" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_5" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "COLLABORATION_DIRECTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+			}
+			table "LOG_OF_CONNECTION" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "CONNECTION_DIRECTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "TARGET_DBP" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ENDPOINT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "PERSISTENT_STORAGE_REQUESTED" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "CONNECTION_NUMBER" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "NOTIFICATION_TYPE" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "TIME_SENT" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "CALC_RETURN_TIME" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "TIME_RECEIVED" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "IS_PROCESSED" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "ENDPOINT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "TRADING_PARTNER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "TRANSFER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "LOG_ORIGIN_OBJECT" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+			}
+			table "LOG_OF_CONNECTION_BATCH" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "PERSISTENT_STORAGE_REQUESTED" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+			}
+			table "LOG_OF_CONNECTOR" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+			}
+			table "LOG_OF_DOCUMENT" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "USER_REFERENCE_1" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_2" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_3" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_4" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_5" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+			}
+			table "LOG_OF_ENVELOPE_ASSEMBLY" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "LOG_OF_GROUP" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "GROUP_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "GROUP_DIRECTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "ACK_STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "APPLICATION_SNDR_ID_QUAL" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "APPLICATION_SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "APPLICATION_RCVR_ID_QUAL" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "APPLICATION_RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "GROUP_DATE" {
+					jdbcTypeName = "VARCHAR"
+					size = 8
+					nillable = true
+				}
+				column "GROUP_TIME" {
+					jdbcTypeName = "VARCHAR"
+					size = 8
+					nillable = true
+				}
+				column "GROUP_CONTROL_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "CONTROLLING_AGNCY" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "STANDARD_CLASS" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "INDUSTRY_GROUP" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "VERSION_RELEASE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "INDUSTRY_GROUP_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "APPLICATION_PASSWORD" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "MESSAGES_SENT_IN_GROUP" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_WRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_WRAP_CHAR_POSITION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_NONWRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "END_NONWRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "APPLICATION_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+					nillable = true
+				}
+				column "ENDPOINT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "SENDER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RECEIVER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERCHANGE_CONTROL_REF" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "TEST_INDICATOR" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "ENVELOPE_SCRIPT_PROPERTY_KEY" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "IS_GENERATED" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "TIME_SENT" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "CALC_RETURN_TIME" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "TIME_RECEIVED" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "IS_PROCESSED" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "ENDPOINT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "CONNECTION_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "CONNECTION_NUMBER" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "INTERCHANGE_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "TRADING_PARTNER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+			}
+			table "LOG_OF_GROUP_ACKNOWLEDGEMENT" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "ID_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 2
+					nillable = true
+				}
+				column "CONTROL_REF_NUMBER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "ACK_ACTION_CODE" {
+					jdbcTypeName = "CHAR"
+					size = 1
+					nillable = true
+				}
+				column "SYNTAX_ERROR_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ADDTL_ERROR_CODE_1" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ADDTL_ERROR_CODE_2" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ADDTL_ERROR_CODE_3" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ADDTL_ERROR_CODE_4" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "NUM_MESSAGES_INCLUDED" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "NUM_MESSAGES_RECEIVED" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "NUM_MESSAGES_ACCEPTED" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "SENDER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RECEIVER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "SEGMENT_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "GROUP_INSTANCE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "LOG_OF_INTERACTION" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "LOG_EVENT_TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "LOG_MESSAGE_URL" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+			}
+			table "LOG_OF_INTERCHANGE" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "INTERCHANGE_DIRECTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "ACK_STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ELEMENT_DELIMITER" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "SUB_ELEMENT_DELIMITER" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "DECIMAL_NOTATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "RELEASE_INDICATOR_CHAR" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "RESERVED_SPACE_IN_UNA" {
+					jdbcTypeName = "VARCHAR"
+					size = 4
+					nillable = true
+				}
+				column "SEGMENT_DELIMITER" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "REPETITION_SEPERATOR" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "INTERCHANGE_VERSION_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 5
+					nillable = true
+				}
+				column "SENDER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "ADDRESS_FOR_REVERSE_RTG" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RECEIVER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "ROUTING_ADDRESS" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERCHANGE_DATE" {
+					jdbcTypeName = "VARCHAR"
+					size = 8
+					nillable = true
+				}
+				column "INTERCHANGE_TIME" {
+					jdbcTypeName = "VARCHAR"
+					size = 8
+					nillable = true
+				}
+				column "INTERCHANGE_CONTROL_REF" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "AUTHORIZATION_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 2
+					nillable = true
+				}
+				column "SECURITY_INFORMATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "APPLICATION_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "PRIORITY_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "INTERCHANGE_ACK_REQUESTED" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "COMMUNICATION_AGREEMENT" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "TEST_INDICATOR" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "NUMBER_OF_INCLUDED_GROUPS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_WRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_WRAP_CHAR_POSITION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "END_WRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "END_WRAP_CHAR_POSITION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_NONWRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "END_NONWRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_WRAPPED_RECORD_CHAR_POS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "END_WRAPPED_RECORD_CHAR_POS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_NORMALIZED_CHAR_POS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "END_NORMALIZED_CHAR_POS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ENVELOPE_SCRIPT_PROPERTY_KEY" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "DATA_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PERSISTENT_STORAGE_REQUESTED" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "AUTHORIZATION_INFORMATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "SECURITY_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 2
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "REPETITION_DELIMITER" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "INTERNAL_SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERNAL_SENDER_SUB_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERNAL_RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERNAL_RECEIVER_SUB_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "ENDPOINT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "CONTAINS_GROUP_IN_DATA" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "TIME_SENT" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "CALC_RETURN_TIME" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "TIME_RECEIVED" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "IS_PROCESSED" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "CANONICAL_EDI_DATA" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ENDPOINT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "CONNECTION_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "CONNECTION_NUMBER" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "TRADING_PARTNER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+			}
+			table "LOG_OF_INTERCHANGE_ACKNOWLEDGEMENT" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "CONTROL_REF_NUMBER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "INTERCHANGE_DATE" {
+					jdbcTypeName = "VARCHAR"
+					size = 16
+					nillable = true
+				}
+				column "INTERCHANGE_TIME" {
+					jdbcTypeName = "VARCHAR"
+					size = 16
+					nillable = true
+				}
+				column "ACK_ACTION_CODE" {
+					jdbcTypeName = "CHAR"
+					size = 4
+					nillable = true
+				}
+				column "SYNTAX_ERROR_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "SENDER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RECEIVER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "INTERNAL_SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERNAL_SENDER_SUB_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERNAL_RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERNAL_RECEIVER_SUB_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "DIRECTION_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+			}
+			table "LOG_OF_MESSAGE" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "GROUP_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "MESSAGE_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "MESSAGE_DIRECTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "ACK_STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "USER_REFERENCE_1" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_2" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_3" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "REFERENCE_DATE_1" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "REFERENCE_DATE_2" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "MESSAGE_CONTROL_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "CONTROLLING_AGNCY" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "STANDARD_CLASS" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "INDUSTRY_GROUP" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "VERSION_RELEASE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "INDUSTRY_GROUP_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "COMMON_ACCESS_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "TRANSFER_STATUS" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "TRANSFER_SEQUENCE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_WRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_WRAP_CHAR_POSITION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_NONWRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "END_NONWRAPPED_RECORD" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "START_NONWRAP_RECORD_APP" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "END_NONWRAP_RECORD_APP" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "SEQUENCE_OF_ASSOC_ACK" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "DATA_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "CONTEXT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "IMPLEMENTATION_CONV_REF" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ENDPOINT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "MESSAGE_SCHEMA_TYPE" {
+					jdbcTypeName = "VARCHAR"
+					size = 25
+					nillable = true
+				}
+				column "SENDER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "SENDER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "RECEIVER_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "RECEIVER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "INTERCHANGE_CONTROL_REF" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "TEST_INDICATOR" {
+					jdbcTypeName = "VARCHAR"
+					size = 1
+					nillable = true
+				}
+				column "GROUP_CONTROL_REFERENCE" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "USER_REFERENCE_4" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "USER_REFERENCE_5" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "ACKNOWLEDGEMENT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ENVELOPE_SCRIPT_PROPERTY_KEY" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "CODE_LIST_DIR_VERSION" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "MESSAGE_TYPE_SUB_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "TIME_SENT" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "CALC_RETURN_TIME" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "TIME_RECEIVED" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "IS_PROCESSED" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "ENDPOINT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "CONNECTION_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "CONNECTION_NUMBER" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "INTERCHANGE_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "GROUP_LOG_NUMBER" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "TRADING_PARTNER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+			}
+			table "LOG_OF_MESSAGE_ACKNOWLEDGEMENT" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "ID_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "CONTROL_REF_NUMBER" {
+					jdbcTypeName = "VARCHAR"
+					size = 14
+					nillable = true
+				}
+				column "MESSAGE_TYPE" {
+					jdbcTypeName = "VARCHAR"
+					size = 2
+					nillable = true
+				}
+				column "MESSAGE_VERSION" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "MESSAGE_RELEASE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "CONTROLLING_AGENCY" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ASSOCIATION_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "CODE_LIST_DIR_VERSION" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "MESSAGE_TYPE_SUB_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 6
+					nillable = true
+				}
+				column "ACK_ACTION_CODE" {
+					jdbcTypeName = "CHAR"
+					size = 1
+					nillable = true
+				}
+				column "SYNTAX_ERROR_CODE" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ADDTL_ERROR_CODE_1" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ADDTL_ERROR_CODE_2" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ADDTL_ERROR_CODE_3" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "ADDTL_ERROR_CODE_4" {
+					jdbcTypeName = "VARCHAR"
+					size = 3
+					nillable = true
+				}
+				column "REFERENCE_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "REFERENCE_ID_QUALIFIER" {
+					jdbcTypeName = "VARCHAR"
+					size = 4
+					nillable = true
+				}
+				column "END_POINT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "LOG_OF_OUTBOUND_ACK" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "ACKNOWLEDGEMENT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "LOG_OF_PROCESS" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "PROCESS_DEFINITION_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PROCESS_DEFINITION_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "PROCESS_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PROCESS_USER_REF" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "LOG_MESSAGE_URL" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "LAUNCH_TYPE" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+					nillable = true
+				}
+				column "LAUNCH_TYPE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "LAUNCHER_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "ACTIVITY_ID" {
+					jdbcTypeName = "CHAR"
+					size = 36
+					nillable = true
+				}
+			}
+			table "LOG_OF_PROCESS_STEP" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "PROCESS_DEFINITION_STEP_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PROCESS_DEFINITION_STEP_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "PROCESS_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "LOG_MESSAGE_URL" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "PROCESS_STEP_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "METHOD_MESSAGES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+			}
+			table "LOG_OF_SYSTEM" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DATE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "MARKED_FOR_PURGE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "SERVICE_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "LOG_MESSAGE_URL" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+			}
+			table "LOG_PROPERTY_VALUE" {
+				column "LOG_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "LOG_TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "VALUE" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+			}
+			table "LOG_STORAGE_NODE" {
+				column "LOG_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "LOG_TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STORAGE_TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "STORAGE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "CREATED_DATE" {
+					jdbcTypeName = "TIMESTAMP"
+					defaultValueLiteral = "now()"
+					size = 29
+					decimalDigits = 6
+					nillable = true
+				}
+			}
+			table "LogFilterComposites" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ParentCompositeID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "Sequence" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "Conjunction" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "LogFilterCriteria" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ParentCompositeID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Sequence" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "Date" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "DateQualifier" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "LogStatus" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "LogStatusQualifier" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "MarkedForPurge" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "MarkedForPurgeQualifier" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "LogFilterCriteriaValues" {
+				column "CriteriaID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Type" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "Qualifier" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "LowerValue" {
+					jdbcTypeName = "VARCHAR"
+					size = 255
+				}
+				column "UpperValue" {
+					jdbcTypeName = "VARCHAR"
+					size = 255
+					nillable = true
+				}
+			}
+			table "LogFilterTypeRoots" {
+				column "LogFilterID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Type" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "RootCompositeID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "LogFilters" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "UserID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "UserDefinedID" {
+					jdbcTypeName = "VARCHAR"
+					size = 70
+				}
+				column "Version" {
+					jdbcTypeName = "VARCHAR"
+					size = 20
+				}
+				column "Description" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+					nillable = true
+				}
+			}
+			table "LogPropertyFilterComposites" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ParentCompositeID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "Sequence" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "Conjunction" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "LogPropertyFilterCriteria" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ParentCompositeID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "Sequence" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "PropertyName" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "PropertyNameQualifier" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PropertyValue" {
+					jdbcTypeName = "VARCHAR"
+					size = 64
+					nillable = true
+				}
+				column "PropertyValueQualifier" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "LoggableAttributeGroupingMembers" {
+				column "LAGID" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+				}
+				column "LogType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "AttributeID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "LoggableAttributeGroupings" {
+				column "ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+				}
+				column "UserDefinedID" {
+					jdbcTypeName = "VARCHAR"
+					size = 70
+				}
+				column "Description" {
+					jdbcTypeName = "VARCHAR"
+					size = 2147483647
+					nillable = true
+				}
+			}
+			table "MSG_FILTER" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "DESCRIPTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "VERSION" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+				}
+				column "ENABLED" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "RULES_CONDITION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "HASH_TOTAL" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+			}
+			table "MSG_FILTER_CHANNEL" {
+				column "MSG_FILTER_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "CHANNEL_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+			}
+			table "MSG_FILTER_EVENT_TRIGGER" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "MSG_FILTER_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "EVNTMON_NOTIF_TYPES_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "MSG_FILTER_EVENT_TRIGGER_PROP" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "MSG_FILTER_EVENT_TRIGGER_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "EVNTMON_NOTIF_TYPE_PROPS_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "VALUE" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+			}
+			table "MSG_FILTER_RULE" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "MSG_FILTER_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "HEADER" {
+					jdbcTypeName = "VARCHAR"
+					size = 128
+				}
+				column "CONDITION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "PATTERN" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+			}
+			table "MetadataCompositeTable" {
+				column "dataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "componentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "syntaxCategoryID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "nodeTypeID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "contentModelTypeID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "nodeSpecificString1" {
+					jdbcTypeName = "VARCHAR"
+					size = 10000
+					nillable = true
+				}
+				column "nodeSpecificString2" {
+					jdbcTypeName = "VARCHAR"
+					size = 10000
+					nillable = true
+				}
+				column "nodeSpecificString3" {
+					jdbcTypeName = "VARCHAR"
+					size = 10000
+					nillable = true
+				}
+				column "nodeSpecificString4" {
+					jdbcTypeName = "VARCHAR"
+					size = 10000
+					nillable = true
+				}
+				column "nodeSpecificString5" {
+					jdbcTypeName = "VARCHAR"
+					size = 10000
+					nillable = true
+				}
+				column "nodeSpecificInt1" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nodeSpecificInt2" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nodeSpecificInt3" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nodeSpecificInt4" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nodeSpecificBoolean1" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nodeSpecificBoolean2" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nodeSpecificBoolean3" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nodeSpecificBoolean4" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 1280
+					nillable = true
+				}
+				column "mapKey" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+					nillable = true
+				}
+			}
+			table "NAMED_VARIABLE_ARGUMENT" {
+				column "REFERENCE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "NAMED_VARIABLE_ARGUMENT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "DATA_TYPE_ID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "NEXT_NUMBER" {
+				column "NN_KEY" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "NN_VALUE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "NN_BLOCKSIZE" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "NN_BLOCKNUMBER" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "NN_DESCRIPTION" {
+					jdbcTypeName = "VARCHAR"
+					size = 80
+					nillable = true
+				}
+			}
+			table "NEXT_NUMBER_ID_ASSOCIATIONS" {
+				column "NN_KEY" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "NN_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "OnboardingFaEnveloper" {
+				column "envID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "envName" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "groupID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "inheritMap" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "tradingPartnerID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "stdType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "targetEnvelopeId" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "targetDBP" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "mappings" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "targetLimits" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "intControl" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "intInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "grpControl" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "grpInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "msgControl" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "msgInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "ackRequestTimeQty" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ackRequestUOT" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "targetConnWrapType" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "8193"
+					size = 10
+					nillable = true
+				}
+				column "encodingCharset" {
+					jdbcTypeName = "VARCHAR"
+					defaultValueLiteral = "\'UTF-8\'::character varying"
+					size = 40
+				}
+				column "enableFixedWrap" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "fixedWrapLength" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "80"
+					size = 10
+				}
+				column "senderID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "senderIDQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "receiverID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "receiverIDQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "elementDelimiter" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "segmentDelimiter" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "subElementDelimiter" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "decimalNotation" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "releaseIndicatorChar" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "reservedSpaceINUNA" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "repetitionSeparator" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "interchangeVersionID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routingAddress" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "addressForRevRouting" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "authorizationQual" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "authorizationInfo" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "securityQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "securityInformation" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "standardClass" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "industryGroup" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "testProduction" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "messageID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "applicationReference" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "priorityCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "intAckRequested" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "commAgreement" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "appSenderID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "appSenderIDQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "appReceiverID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "appReceiverIDQual" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "appPassword" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "controllingAgency" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "versionRelease" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "industryCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "groupCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "codeListDirVer" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "msgSubTypeID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "targetDBPInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "targetLimitsInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "templateProjectName" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "routeFQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+			}
+			table "OnboardingInboundRoute" {
+				column "routeID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "routeName" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "routeGroupID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "routeInheritMap" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "routeTradingPartnerID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "routeStdType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "routeDupInterchangeAction" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "6402"
+					size = 10
+					nillable = true
+				}
+				column "routeSenderID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeSenderIDQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeReceiverID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeReceiverIDQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeDecimalNotation" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeReleaseIndicatorChar" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeReservedSpaceINUNA" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeInterchangeVersionID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeRoutingAddress" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeAddressForRevRouting" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeAuthorizationQual" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeAuthorizationInfo" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeSecurityQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeSecurityInformation" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeStandardClass" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeIndustryGroup" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeTestProduction" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeMessageID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeApplicationReference" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routePriorityCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeIntAckRequested" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeCommAgreement" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeAppSenderID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeAppSenderIDQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeAppReceiverID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeAppReceiverIDQual" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeAppPassword" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeControllingAgency" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeVersionRelease" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeIndustryCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeGroupCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeCodeListDirVer" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeMsgSubTypeID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "routeCollabID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "processBindingID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "processBindingEnabled" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "1"
+					size = 5
+				}
+				column "routeOrder" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "routeMappings" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "ignoreErrorCodes" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "ackID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ackTargetEndpointID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "ackLevelToSend" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ackFaSchemaID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "ackFaMsgID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "ackValidatingSchemaID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "ackX12TaOne" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "0"
+					size = 5
+				}
+				column "ackEnabled" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "1"
+					size = 5
+				}
+				column "ackErrorCodes" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "templateProjectName" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "routeFQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+			}
+			table "OnboardingOutboundRoute" {
+				column "routeID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "routeName" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "routeGroupID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "routeInheritMap" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "routeTradingPartnerID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "routeAttVal1" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal2" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal3" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal4" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal5" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal6" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal7" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal8" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal9" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal10" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal11" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal12" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal13" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal14" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal15" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal16" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal17" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal18" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal19" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "routeAttVal20" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "collabID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "processBindingID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "processBindingEnabled" {
+					jdbcTypeName = "SMALLINT"
+					defaultValueLiteral = "1"
+					size = 5
+				}
+				column "priority" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "collabMappings" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "envID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "envGroupID" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "envInheritMap" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "envStdType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "envTargetEnvelopeID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "envTargetDBP" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "envMappings" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "envTargetLimits" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "envIntControl" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "envIntInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "envGrpControl" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "envGrpInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "envMsgControl" {
+					jdbcTypeName = "VARCHAR"
+					size = 2053
+					nillable = true
+				}
+				column "envMsgInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "envAckRequestTimeQty" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "envAckRequestUOT" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "envTargetConnWrapType" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "8193"
+					size = 10
+					nillable = true
+				}
+				column "envEncodingCharset" {
+					jdbcTypeName = "VARCHAR"
+					defaultValueLiteral = "\'UTF-8\'::character varying"
+					size = 40
+				}
+				column "envEnableFixedWrap" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "envFixedWrapLength" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "80"
+					size = 10
+				}
+				column "envSenderID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envSenderIDQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envReceiverID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envReceiverIDQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envElementDelimiter" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envSegmentDelimiter" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envSubElementDelimiter" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envDecimalNotation" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envReleaseIndicatorChar" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envReservedSpaceINUNA" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envRepetitionSeparator" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envInterchangeVersionID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envRoutingAddress" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envAddressForRevRouting" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envAuthorizationQual" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envAuthorizationInfo" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envSecurityQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envSecurityInformation" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envStandardClass" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envIndustryGroup" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envTestProduction" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envMessageID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envApplicationReference" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envPriorityCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envIntAckRequested" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envCommAgreement" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envAppSenderID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envAppSenderIDQualifier" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envAppReceiverID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envAppReceiverIDQual" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envAppPassword" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envControllingAgency" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envVersionRelease" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envIndustryCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envGroupCode" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envCodeListDirVer" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envMsgSubTypeID" {
+					jdbcTypeName = "VARCHAR"
+					size = 35
+					nillable = true
+				}
+				column "envTargetDBPInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "envTargetLimitsInherit" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "templateProjectName" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "routeFQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+			}
+			table "PAYLOADS_TO_VL" {
+				column "CONNECTION_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "STORAGE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "LOG_OF_CONNECTION_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "CREATED_ON" {
+					jdbcTypeName = "TIMESTAMP"
+					defaultValueLiteral = "now()"
+					size = 35
+					decimalDigits = 6
+					nillable = true
+				}
+			}
+			table "PERSISTENT_CONTAINER" {
+				column "containerID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "parentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "PERSISTENT_STORAGE_FILE" {
+				column "fileID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "parentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "filePath" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "startPosition" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "fileLength" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "noDeleteDataStrategy" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "diskSynchronizeStrategy" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "PROCESS_DEFINITION" {
+				column "DEFINITION_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "LAST_STATE_STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "LAST_STATE_STEP_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "DESTINATION" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "VARIABLES" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "FIRST_STATE_STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "LAST_STATE_DEFINITION_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "FIRST_STATE_DEFINITION_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "FIRST_STATE_STEP_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "PROCESS_FUTURE" {
+				column "PROJECT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "EXPORT_FILE_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+				column "EXPORT_FILE_FQN" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "EXPORT_FILE_TYPE" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+					nillable = true
+				}
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "HASH_TOTAL" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+					nillable = true
+				}
+			}
+			table "PROCESS_STORAGE_NODE" {
+				column "PROCESS_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "STORAGE_NODE_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "ParameterDescriptors" {
+				column "ruleSetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ruleId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "parmDescriptorIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "parmDescriptorType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "actionId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "actionParameterIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "referenceId" {
+					jdbcTypeName = "VARCHAR"
+					size = 250
+					nillable = true
+				}
+				column "componentId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "minOccurs" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "maxOccurs" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "isRequired" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "isRepeating" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "isUnbounded" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "isConditional" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "nodeGroup" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+					nillable = true
+				}
+			}
+			table "PathComposites" {
+				column "ruleSetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ruleId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "parmDescriptorIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "pathCompositeIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "pathElementIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "pathElementId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "ProcessSchedule" {
+				column "entryID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "startTime" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "definitionToExecuteID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "recurrenceType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "recurrenceFreq" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "recurrenceDays" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "CREATED_BY" {
+					jdbcTypeName = "CHAR"
+					defaultValueLiteral = "\'USER\'::bpchar"
+					size = 4
+				}
+				column "enabled" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "1"
+					size = 10
+				}
+			}
+			table "RELATED_LOG" {
+				column "SEQUENCE_NUMBER" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "nextval(\'\"EBI\".\"RELATED_LOG_SEQUENCE_NUMBER_seq\"\'::regclass)"
+					size = 10
+				}
+				column "LOM_SEQUENCE_NUMBER" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+					nillable = true
+				}
+				column "LOG_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "LOG_TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "RELATED_LOG_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "RELATED_LOG_TYPE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "CREATED_DATE" {
+					jdbcTypeName = "TIMESTAMP"
+					defaultValueLiteral = "now()"
+					size = 29
+					decimalDigits = 6
+					nillable = true
+				}
+			}
+			table "RelationshipDescriptorTable" {
+				column "dataSetID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "parentComponentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "parentRelationshipIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "componentID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "repeating" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "required" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "maximumOccurs" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "minimumOccurs" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "referenceID" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+					nillable = true
+				}
+				column "unbounded" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "conditional" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "proxy" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "nodeGroup" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+					nillable = true
+				}
+			}
+			table "SELECTION_EXPRESSION" {
+				column "REFERENCE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TABLE_VIEW_INDEX" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "SEQUENCE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "SUB_TYPE" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+					nillable = true
+				}
+				column "UPDATE_SELECT" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+				}
+				column "IS_ROOT" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "COLUMN_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "OPERATOR_TYPE_ID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "VALUE" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "ARGUMENT_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ARGUMENT_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "ARGUMENT_DATA_TYPE_ID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "ARGUMENT_ID2" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ARGUMENT_NAME2" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+					nillable = true
+				}
+				column "ARGUMENT_DATA_TYPE_ID2" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "BEGIN_VALUE" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "END_VALUE" {
+					jdbcTypeName = "VARCHAR"
+					size = 4000
+					nillable = true
+				}
+				column "CONJUNCTION_TYPE_ID" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "NEGATE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "SELECTION_EXPRESSION_CHILD" {
+				column "REFERENCE_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TABLE_VIEW_INDEX" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "PARENT_SEQUENCE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "CHILD_SEQUENCE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "UPDATE_SELECT" {
+					jdbcTypeName = "SMALLINT"
+					size = 5
+				}
+				column "LL_POSITION" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "STATE_MAP" {
+				column "DEFINITION_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "STEP_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "PASS_STATE_DEFINITION_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PASS_STATE_STEP_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "PASS_STATE_STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "FAIL_STATE_DEFINITION_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "FAIL_STATE_STEP_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "FAIL_STATE_STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "RESUME_STATE_DEF_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "RESUME_STATE_STEP_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "RESUME_STATE_STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "SUSPEND_STATE_DEF_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "SUSPEND_STATE_STEP_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "SUSPEND_STATE_STATUS" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "DEFINITION_TO_EXECUTE_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "MAPPINGS" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+			}
+			table "STEP" {
+				column "DEFINITION_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "STEP_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "DEFINITION_TO_EXECUTE_ID_UUID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "FAIL_TO_NEXT_STEP" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PARAMETERS" {
+					jdbcTypeName = "BINARY"
+					size = 2147483647
+					nillable = true
+				}
+				column "LABEL" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "OK_TO_NEXT_STEP" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "CURRENT_STEP" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "SEQUENCE" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "ENABLED" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "1"
+					size = 10
+				}
+			}
+			table "SpreadsheetBindingAssociations" {
+				column "bindingId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "nodeId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "sheetName" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+					nillable = true
+				}
+				column "rowNumber" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+			}
+			table "SpreadsheetBindings" {
+				column "id" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "version" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+					nillable = true
+				}
+				column "schemaId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "templateId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "SpreadsheetSchemaTemplates" {
+				column "schemaId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "templateId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "SpreadsheetTemplates" {
+				column "id" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+				column "version" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+					nillable = true
+				}
+				column "storageKey" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "originalPath" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+					nillable = true
+				}
+			}
+			table "StandardsDefinition" {
+				column "ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "TypeID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "TRADING_PARTNER" {
+				column "TRADING_PARTNER_ID" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "DISPLAY_NAME" {
+					jdbcTypeName = "VARCHAR"
+					size = 128
+					nillable = true
+				}
+			}
+			table "TransformationRuleSets" {
+				column "ruleSetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "sourceDataSetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "sourceDataSetHashTotal" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "targetDataSetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "targetDataSetHashTotal" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "ruleSetDataSetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ruleSetDataSetHashTotal" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "rootRuleId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "sourceConnectorId" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "targetConnectorId" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "userDefinedId" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "version" {
+					jdbcTypeName = "VARCHAR"
+					size = 100
+				}
+				column "needsRefresh" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "flatStorageId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "stateTableStorageId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "suppressNullNextInstance" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "missingTargetNodeAction" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+					nillable = true
+				}
+				column "sanitizeNumerics" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "nullParameterAction" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+					nillable = true
+				}
+				column "ruleSetHashTotal" {
+					jdbcTypeName = "BIGINT"
+					size = 19
+				}
+				column "createApplicationBatch" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "AutoTrim" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "NumericMove" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "allowElementDetachment" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "1"
+					size = 10
+				}
+				column "ApplyWhitespaceFilter" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "1"
+					size = 10
+				}
+				column "FilterISOControlCharactersXML" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "TrimWhitespacesXML" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "RulesetStreamFilter" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "SourceConnectorOutputDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "RulesetStreamFilterOutputDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "StateTableProcessOutputDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "GenerateStreamInstructions" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "1"
+					size = 10
+				}
+				column "XMLTargetFormattingType" {
+					jdbcTypeName = "CHAR"
+					defaultValueLiteral = "\'P\'::bpchar"
+					size = 1
+				}
+				column "XMLPrettyPrintIndentColumns" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "2"
+					size = 10
+				}
+				column "XMLPrettyPrintIndentCharacter" {
+					jdbcTypeName = "VARCHAR"
+					defaultValueLiteral = "\'\\u0020\'::character varying"
+					size = 10
+				}
+				column "LoadExternalDTD" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "AttachInternalRequiredAttributes" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "1"
+					size = 10
+				}
+				column "CompilingDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "TransformationDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "StreamInputDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "StreamOutputDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "SourceConnectorDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "TargetConnectorDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "ConstructsDebug" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "historyProfileId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "DictionaryId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+			}
+			table "TransformationRules" {
+				column "ruleSetId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "ruleId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "parentRuleId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ruleIndex" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "actionId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "ruleType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "ruleConditionId" {
+					jdbcTypeName = "CHAR"
+					size = 32
+					nillable = true
+				}
+				column "quickReference" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "isDisabled" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "isInelligibleForLoopMerge" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "isIgnoreDataGrouping" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "dataGroupingType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "userComment" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+					nillable = true
+				}
+			}
+			table "USER_PREFERENCES" {
+				column "USER_ID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "UILookAndFeel" {
+					jdbcTypeName = "CHAR"
+					size = 120
+					nillable = true
+				}
+				column "UILookAndFeelTheme" {
+					jdbcTypeName = "CHAR"
+					size = 120
+					nillable = true
+				}
+				column "DemoMode" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "PagingSize" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "SuppressAnimations" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "MappingAutoTrim" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "MappingNumeric" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+					nillable = true
+				}
+				column "MappingMoveConfirmation" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "0"
+					size = 10
+				}
+				column "PhoneHome" {
+					jdbcTypeName = "INTEGER"
+					defaultValueLiteral = "1"
+					size = 10
+				}
+				column "DefaultInternetBrowser" {
+					jdbcTypeName = "CHAR"
+					size = 120
+					nillable = true
+				}
+			}
+			table "WSConsumerConfiguration" {
+				column "uuid" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "type" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "description" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "version" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+				column "wsdlLocation" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+				}
+				column "storageLocation" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "WSProviderConfiguration" {
+				column "uuid" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 1024
+				}
+				column "version" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+				column "axisArchive" {
+					jdbcTypeName = "VARCHAR"
+					size = 512
+				}
+				column "storageLocation" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "authorization" {
+					jdbcTypeName = "VARCHAR"
+					size = 256
+				}
+			}
+			table "defaultperms" {
+				column "objectID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "entID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "entType" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+				column "perms" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "groupperms" {
+				column "objectID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "groupID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "perms" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "groups" {
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+				}
+				column "groupID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "membership" {
+				column "userID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "groupID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+			table "permheader" {
+				column "objID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "hidden" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "userperms" {
+				column "objectID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "userID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+				column "perms" {
+					jdbcTypeName = "INTEGER"
+					size = 10
+				}
+			}
+			table "users" {
+				column "name" {
+					jdbcTypeName = "VARCHAR"
+					size = 32
+				}
+				column "userID" {
+					jdbcTypeName = "CHAR"
+					size = 32
+				}
+			}
+		}
+	}
+}

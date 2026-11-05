@@ -1,0 +1,20 @@
+package com.customer.b2bcloud.core.SystemCheck;
+
+def bps InboundNoProcessRouteBPS implements com.extol.ebi.bps.lib.templates.InboundEdiRouteTemplate {
+
+	def execute(Route route, StorageNode context, StorageNode inputDataFragment) {
+		var StorageNode targetSn
+		var StorageNode targetContextSn
+		var String UserRef1
+		var String vProcessNumber
+		var String vReferenceNumber
+
+		step {
+			new SetRouteFieldValues().execute(route)
+		} next : end 
+		step {
+			new SetExitStatus().execute(true)
+		} end : end 
+	}
+
+}

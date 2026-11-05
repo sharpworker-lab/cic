@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/defaultTS.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.defaultTS" componentType="14" name="com.customer.b2bcloud.core.SystemCheck.defaultTS">
+  </ConfigurationComponent>
+?>
+<ExtolProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ExtolProperties.xsd" description="com.customer.b2bcloud.core.SystemCheck.defaultTS" id="_fqn:/com.customer.b2bcloud.core.SystemCheck.defaultTS" type="ptTransformationSettings" userDefinedId="com.customer.b2bcloud.core.SystemCheck.defaultTS" version="Deployed">
+  <Property key="Validate.traceDebug" value="false"/>
+  <Property key="Validate.append" value="false"/>
+  <Property key="Validate.interactiveDebug" value="false"/>
+  <Property key="LogNullInput" value="false"/>
+</ExtolProperties>

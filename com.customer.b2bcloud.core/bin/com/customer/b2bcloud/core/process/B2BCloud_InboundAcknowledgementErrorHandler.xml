@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/process/B2BCloud_InboundAcknowledgementErrorHandler.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.process.B2BCloud_InboundAcknowledgementErrorHandler" componentType="6" name="com.customer.b2bcloud.core.process.B2BCloud_InboundAcknowledgementErrorHandler">
+  </ConfigurationComponent>
+?>
+<ProcessControlScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProcessControlScript.xsd">
+  <BPScript scriptID="_fqn:/com.customer.b2bcloud.core.process.B2BCloud_InboundAcknowledgementErrorHandler" name="com.customer.b2bcloud.core.process.B2BCloud_InboundAcknowledgementErrorHandler" version="1.0" destination="topic/Engine" visible="true" editable="true">
+    <Argument name="storageId" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="interchangeProperties" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.util.Map"/>
+    </Argument>
+    <Argument name="acknowledgementErrorProperties" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.util.Map"/>
+    </Argument>
+    <Argument name="intCtlNbr" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="message" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="origGrpNo" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="syntaxError" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="actCode" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="sendEmailTo" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="sendEmailFrom" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="subject" type="CONSTANT" required="true" mappable="true" value="Inbound Acknowledgement Error Event">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="label1" type="CONSTANT" required="true" mappable="true" value="FA Interchange Control#: ">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="label2" type="CONSTANT" required="true" mappable="true" value="\nOriginal Group Control#:  ">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="label4" type="CONSTANT" required="true" mappable="true" value="\nSyntax Error:  ">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="label3" type="CONSTANT" required="true" mappable="true" value="\nAck Code:  ">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="eBIAdministratorEmail" type="CONSTANT" required="true" mappable="true" value="&lt;com.customer.b2bcloud.core.B2BCloudGV.B2BCloudAdminEmail>">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="eBIHostEmail" type="CONSTANT" required="true" mappable="true" value="&lt;com.customer.b2bcloud.core.B2BCloudGV.B2BCloudHostEmail>">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <BPStep stepID="_irn:/00000000000000000000000000000001" label="" nextPass="NEXT" nextPassI="1" nextFail="END" nextFailI="-1" enabled="true" parms="8,15">
+      <LiteBPScript scriptID="_f5dbfd5425e7410886bde8ea26e1b282" name="Resolve Global Variables" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000002" label="" nextPass="NEXT" nextPassI="2" nextFail="END" nextFailI="-1" enabled="true" parms="9,16">
+      <LiteBPScript scriptID="_f5dbfd5425e7410886bde8ea26e1b282" name="Resolve Global Variables" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000003" label="" nextPass="NEXT" nextPassI="3" nextFail="END" nextFailI="-1" enabled="true" parms="1,3,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1">
+      <LiteBPScript scriptID="_7a179bbdbd1941259076e83d2ca7743b" name="Extract EDI Interchange Data" version="1.0">
+        <Argument name="Interchange Properties" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.util.Map"/>
+        </Argument>
+        <Argument name="ICN" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Receiver Id" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Receiver Id Qual" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Sender Id" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Sender Id Qual" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Authorization Info" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Authorization Qual" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Security Info" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Security Qual" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Interchange Date" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Interchange Time" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Segment Delimiter" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Element Delimiter" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Sub-Element Delimiter" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Repetition Separator" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Interchange Version ID" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Interchange Ack Requested" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Test Indicator" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000004" label="" nextPass="NEXT" nextPassI="4" nextFail="END" nextFailI="-1" enabled="true" parms="2,-1,5,-1,7,6,-1,-1,-1,-1,-1,-1,-1">
+      <LiteBPScript scriptID="_7a179bbdbd1941259076e83d2ca7743d" name="Extract EDI Acknowledgement Error Data" version="1.0">
+        <Argument name="Acknowledgement Error Properties" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.util.Map"/>
+        </Argument>
+        <Argument name="ORIG_INT_CTL_REF_NBR" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="ORIG_GRP_CTL_REF_NBR" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="ORIG_MSG_CTL_REF_NBR" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="ACK_ACTION_CODE" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="SYNTAX_ERROR_CODE" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="ADDTL_ERROR_CODE_1" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="ADDTL_ERROR_CODE_2" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="ADDTL_ERROR_CODE_3" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="ADDTL_ERROR_CODE_4" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="NUM_MESSAGES_INCLUDED" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="NUM_MESSAGES_RECEIVED" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="NUM_MESSAGES_ACCEPTED" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000005" label="" nextPass="NEXT" nextPassI="5" nextFail="END" nextFailI="-1" enabled="true" parms="4,11,3">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000006" label="" nextPass="NEXT" nextPassI="6" nextFail="END" nextFailI="-1" enabled="true" parms="4,4,12">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000007" label="" nextPass="NEXT" nextPassI="7" nextFail="END" nextFailI="-1" enabled="true" parms="4,4,5">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000008" label="" nextPass="NEXT" nextPassI="8" nextFail="END" nextFailI="-1" enabled="true" parms="4,4,14">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000009" label="" nextPass="NEXT" nextPassI="9" nextFail="END" nextFailI="-1" enabled="true" parms="4,4,7">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000010" label="" nextPass="NEXT" nextPassI="10" nextFail="END" nextFailI="-1" enabled="true" parms="4,4,13">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000011" label="" nextPass="NEXT" nextPassI="11" nextFail="END" nextFailI="-1" enabled="true" parms="4,4,6">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000012" label="" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="8,9,-1,-1,10,4,0,-1">
+      <LiteBPScript scriptID="_aeabd6c7130a40f18da6ac7089f52712" name="Send Email" version="1.0">
+        <Argument name="To" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="From" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="CC:" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="BCC:" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Subject" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Message" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Attachment" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.io.File"/>
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Attachment Name" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+  </BPScript>
+</ProcessControlScript>

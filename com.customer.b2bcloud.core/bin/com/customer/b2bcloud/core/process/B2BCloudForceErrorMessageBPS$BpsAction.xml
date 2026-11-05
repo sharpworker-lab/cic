@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/process/B2BCloudForceErrorMessageBPS$BpsAction.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.process.B2BCloudForceErrorMessageBPS$BpsAction" componentType="3" name="com.customer.b2bcloud.core.process.B2BCloudForceErrorMessageBPS$BpsAction">
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.process.B2BCloudForceErrorMessageBPS"/>
+  </ConfigurationComponent>
+?>
+<Action xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Action.xsd" actionID="_fqn:/com.customer.b2bcloud.core.process.B2BCloudForceErrorMessageBPS$BpsAction" category="Process Scripts" name="com.customer.b2bcloud.core.process.B2BCloudForceErrorMessageBPS$BpsAction" readOnly="false">
+  <ScriptLauncher scriptID="fqn:/com.customer.b2bcloud.core.process.B2BCloudForceErrorMessageBPS"/>
+  <ActionParameter direction="1" displaySequence="0" index="0" name="messageTypeInput" required="true" single="true">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="1" displaySequence="1" index="1" name="dataReferenceValueInput" required="true" single="true">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="1" displaySequence="2" index="2" name="partnerInput" required="true" single="true">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="1" displaySequence="3" index="3" name="dataInput" required="true" single="true">
+    <AllowedDataType>object</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="1" displaySequence="4" index="4" name="forceReasonInput" required="true" single="true">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="1" displaySequence="5" index="5" name="descriptionInput" required="true" single="true">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="1" displaySequence="6" index="6" name="itemIdInput" required="true" single="true">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="2" displaySequence="7" index="7" name="messageTypeOutput" required="false" single="false">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="2" displaySequence="8" index="8" name="dataReferenceValueOutput" required="false" single="false">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="2" displaySequence="9" index="9" name="partnerOutput" required="false" single="false">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="2" displaySequence="10" index="10" name="dataOutput" required="false" single="false">
+    <AllowedDataType>object</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="2" displaySequence="11" index="11" name="forceReasonOutput" required="false" single="false">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="2" displaySequence="12" index="12" name="descriptionOutput" required="false" single="false">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="2" displaySequence="13" index="13" name="itemIdOutput" required="false" single="false">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+</Action>

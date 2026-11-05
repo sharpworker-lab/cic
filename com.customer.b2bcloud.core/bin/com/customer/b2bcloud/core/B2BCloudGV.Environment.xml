@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/B2BCloudGV.Environment.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.B2BCloudGV.Environment" componentType="16" name="com.customer.b2bcloud.core.B2BCloudGV.Environment">
+  </ConfigurationComponent>
+?>
+<GSSV xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="GSSV.xsd" id="_fqn:/com.customer.b2bcloud.core.B2BCloudGV.Environment" key="com.customer.b2bcloud.core.B2BCloudGV.Environment" resolveAtRuntime="false" value="Omni Logistics Stage- B2BCloud "/>

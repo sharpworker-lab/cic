@@ -1,0 +1,61 @@
+package com.customer.b2bcloud.core.process;
+
+def bps B2BCloud_InboundAcknowledgementErrorHandler {
+
+	def execute(StorageNode storageId, EdiDataMap interchangeProperties, EdiDataMap acknowledgementErrorProperties) {
+		var String intCtlNbr
+		var String message
+		var String origGrpNo
+		var String syntaxError
+		var String actCode
+		var String sendEmailTo
+		var String sendEmailFrom
+		var String subject="Inbound Acknowledgement Error Event"
+		var String label1="FA Interchange Control#: "
+		var String label2="\\nOriginal Group Control#:  "
+		var String label4="\\nSyntax Error:  "
+		var String label3="\\nAck Code:  "
+		var String eBIAdministratorEmail="<com.customer.b2bcloud.core.B2BCloudGV.B2BCloudAdminEmail>"
+		var String eBIHostEmail="<com.customer.b2bcloud.core.B2BCloudGV.B2BCloudHostEmail>"
+
+		step {
+			new ResolveGlobalVariables().execute(sendEmailTo, eBIAdministratorEmail)
+		} next : end 
+		step {
+			new ResolveGlobalVariables().execute(sendEmailFrom, eBIHostEmail)
+		} next : end 
+		step {
+			new ExtractEdiInterchangeData().execute(interchangeProperties, intCtlNbr, null, null, null, null, null, null, null,
+			null, null, null, null, null, null, null, null, null, null)
+		} next : end 
+		step {
+			new ExtractEdiAcknowledgementErrorData().execute(acknowledgementErrorProperties, null, origGrpNo, null, actCode,
+			syntaxError, null, null, null, null, null, null, null)
+		} next : end 
+		step {
+			new AppendString().execute(message, label1, intCtlNbr)
+		} next : end 
+		step {
+			new AppendString().execute(message, message, label2)
+		} next : end 
+		step {
+			new AppendString().execute(message, message, origGrpNo)
+		} next : end 
+		step {
+			new AppendString().execute(message, message, label3)
+		} next : end 
+		step {
+			new AppendString().execute(message, message, actCode)
+		} next : end 
+		step {
+			new AppendString().execute(message, message, label4)
+		} next : end 
+		step {
+			new AppendString().execute(message, message, syntaxError)
+		} next : end 
+		step {
+			new SendEmail().execute(sendEmailTo, sendEmailFrom, null, null, subject, message, storageId, null)
+		} end : end 
+	}
+
+}

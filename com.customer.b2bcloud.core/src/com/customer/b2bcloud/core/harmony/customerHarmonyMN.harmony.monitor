@@ -1,0 +1,15 @@
+package com.customer.b2bcloud.core.harmony
+
+def unifiedCommMonitor customerHarmonyMN implements com.extol.ebi.adapter.versalex.VersaLexListenMonitor {
+
+	def com.extol.ebi.adapter.versalex.VersaLexListenConfig getConfiguration() {
+		val config = new com.extol.ebi.adapter.versalex.VersaLexListenConfig
+		config.clarifyListenPort = 14081
+		config.startAsService = true
+
+		return config
+	}
+	def dispatch() {
+	}
+
+}

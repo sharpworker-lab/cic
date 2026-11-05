@@ -1,0 +1,10 @@
+package com.customer.b2bcloud.core.actions
+
+
+def formula NormalizedInputEQNormalizedValueX2FOR {
+
+	def Boolean execute(String input, String value, String input2) {
+		formulaText = "input normalize_space == value normalize_space or input2 normalize_space == value normalize_space"
+	}
+
+}

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/MANUAL_UpdateReceivedOnlyStatusBPS.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS" componentType="6" name="com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS">
+  </ConfigurationComponent>
+?>
+<ProcessControlScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProcessControlScript.xsd">
+  <BPScript scriptID="_fqn:/com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS" name="com.customer.b2bcloud.core.SystemCheck.MANUAL_UpdateReceivedOnlyStatusBPS" version="2.0" description="Catalyst" destination="topic/Engine" visible="true" editable="true">
+    <BPStep stepID="_irn:/00000000000000000000000000000001" label="" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="-1">
+      <LiteBPScript scriptID="_39d614240ea84103b88fb5f8c6d90673" name="Set Exit Status" version="1.0">
+        <Argument name="Status" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+  </BPScript>
+</ProcessControlScript>

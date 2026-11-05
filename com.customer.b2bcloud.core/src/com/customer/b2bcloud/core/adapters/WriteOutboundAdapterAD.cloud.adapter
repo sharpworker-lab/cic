@@ -1,0 +1,14 @@
+package com.customer.b2bcloud.core.adapters
+
+def unifiedCommAdapter WriteOutboundAdapterAD implements com.cleo.clarify.cloudadapter.CloudAdapter {
+
+	def com.cleo.clarify.cloudadapter.CloudAdapterConfig getConfiguration(StorageNode Payload,
+	com.extol.ebi.bps2.lib.types.CloudEndpoint OverrideEndpoint, String Filname) {
+		val config = new com.cleo.clarify.cloudadapter.CloudAdapterConfig
+		config.endpoint = new com.extol.ebi.bps2.lib.types.CloudEndpoint("USBank_AS2")
+		config.filename = "${Filname}__${datetime:YYYYMMDDhhmmss}.edi"
+
+		return config
+	}
+
+}

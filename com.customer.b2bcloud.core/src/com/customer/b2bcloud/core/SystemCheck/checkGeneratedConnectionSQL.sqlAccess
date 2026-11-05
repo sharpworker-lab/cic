@@ -1,0 +1,21 @@
+#content /*sqlaccess 2 */ package com.customer.b2bcloud.core.SystemCheck;
+
+def sqlAccess checkGeneratedConnectionSQL {
+
+	def execute(String date, String dateminusday, String generatedStatusCount) {
+		bindInput(typeof(BIGINT), date)
+		bindInput(typeof(BIGINT), dateminusday)
+		bindOutput(typeof(VARCHAR), generatedStatusCount)
+
+		dataSource = new com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS
+		statement = "select count(*) from \"EBI\".\"LOG_OF_CONNECTION\" where \"STATUS\" = \'15\' and \"DATE\" < ${date} and \"DATE\" >= ${dateminusday}"
+
+		timeout [
+			timeUnit = Seconds
+		]
+
+		retry [
+			timeUnit = Seconds
+		]
+	}
+}

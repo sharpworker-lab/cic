@@ -1,0 +1,10 @@
+package com.customer.b2bcloud.core.adapters;
+
+def fileReadAdapter ProcessLogFA {
+
+	def execute(AdapterPayload storageNodes, String processLogURL) {
+		parentDirectory = "/mnt/efsmnt/Clarify_4_Share-v414/logs/processes/${processLogURL}"
+		fileNameOrFilter = "processLog.xml"
+	}
+
+}

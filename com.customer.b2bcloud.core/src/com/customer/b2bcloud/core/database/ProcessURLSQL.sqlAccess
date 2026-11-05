@@ -1,0 +1,20 @@
+#content /*sqlaccess 2 */ package com.customer.b2bcloud.core.database;
+
+def sqlAccess ProcessURLSQL {
+
+	def execute(String Processnumber, String URL) {
+		bindInput(typeof(BIGINT), Processnumber)
+		bindOutput(typeof(VARCHAR), URL)
+
+		dataSource = new com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS
+		statement = "SELECT \"LOG_MESSAGE_URL\" FROM \"EBI\".\"LOG_OF_PROCESS\" WHERE \"PROCESS_USER_REF\"=${Processnumber}"
+
+		timeout [
+			timeUnit = Seconds
+		]
+
+		retry [
+			timeUnit = Seconds
+		]
+	}
+}

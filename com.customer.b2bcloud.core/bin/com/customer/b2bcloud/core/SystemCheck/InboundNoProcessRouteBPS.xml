@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/InboundNoProcessRouteBPS.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.InboundNoProcessRouteBPS" componentType="6" name="com.customer.b2bcloud.core.SystemCheck.InboundNoProcessRouteBPS">
+  </ConfigurationComponent>
+?>
+<ProcessControlScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProcessControlScript.xsd">
+  <BPScript scriptID="_fqn:/com.customer.b2bcloud.core.SystemCheck.InboundNoProcessRouteBPS" templateID="_202fa5c3461a4103a81f87882e98fc52" name="com.customer.b2bcloud.core.SystemCheck.InboundNoProcessRouteBPS" version="1.0" destination="topic/Engine" visible="true" editable="true">
+    <Argument name="route" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.collaboration.CollaborationID"/>
+    </Argument>
+    <Argument name="context" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="inputDataFragment" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="true" type="CONSTANT" required="true" mappable="true" value="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <Argument name="targetSn" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="targetContextSn" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="UserRef1" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="vProcessNumber" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="vReferenceNumber" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="_ebi3_booleanliteral0" type="CONSTANT" required="true" mappable="true" value="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <BPStep stepID="_irn:/00000000000000000000000000000001" label="" nextPass="NEXT" nextPassI="1" nextFail="END" nextFailI="-1" enabled="true" parms="0">
+      <LiteBPScript scriptID="_76f166dfd337410498f18c9b6c6057e2" name="Set Route Parameter Values" version="1.0">
+        <Argument name="Route" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.collaboration.CollaborationID"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000002" label="" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="9">
+      <LiteBPScript scriptID="_39d614240ea84103b88fb5f8c6d90673" name="Set Exit Status" version="1.0">
+        <Argument name="Status" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+  </BPScript>
+</ProcessControlScript>

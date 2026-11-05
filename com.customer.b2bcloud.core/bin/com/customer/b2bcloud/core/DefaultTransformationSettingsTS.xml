@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/DefaultTransformationSettingsTS.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.DefaultTransformationSettingsTS" componentType="14" name="com.customer.b2bcloud.core.DefaultTransformationSettingsTS">
+  </ConfigurationComponent>
+?>
+<ExtolProperties xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ExtolProperties.xsd" description="com.customer.b2bcloud.core.DefaultTransformationSettingsTS" id="_fqn:/com.customer.b2bcloud.core.DefaultTransformationSettingsTS" type="ptTransformationSettings" userDefinedId="com.customer.b2bcloud.core.DefaultTransformationSettingsTS" version="Deployed">
+  <Property key="Validate.traceDebug" value="false"/>
+  <Property key="Validate.append" value="false"/>
+  <Property key="Validate.interactiveDebug" value="false"/>
+  <Property key="LogNullInput" value="false"/>
+  <Property key="source.escapeWrapCharacter" value="&quot;"/>
+  <Property key="Validate.SourceDelimiter" value=","/>
+  <Property key="Validate.targetValidationEnabled" value="true"/>
+  <Property key="Validate.targetValidationRequired" value="true"/>
+  <Property key="Validate.targetValidationErrorLevelRequired" value="Hard_Error"/>
+  <Property key="Validate.targetValidationDataType" value="true"/>
+  <Property key="Validate.targetValidationErrorLevelDataType" value="Hard_Error"/>
+  <Property key="Validate.targetValidationAllowedValues" value="true"/>
+  <Property key="Validate.targetValidationErrorLevelAllowedValues" value="Hard_Error"/>
+  <Property key="Validate.targetValidationMinLength" value="true"/>
+  <Property key="Validate.targetValidationErrorLevelMinLength" value="Hard_Error"/>
+  <Property key="Validate.targetValidationMaxLength" value="true"/>
+  <Property key="Validate.targetValidationErrorLevelMaxLength" value="Hard_Error"/>
+  <Property key="Validate.targetValidationMinOccurs" value="true"/>
+  <Property key="Validate.targetValidationErrorLevelMinOccurs" value="Hard_Error"/>
+  <Property key="Validate.targetValidationMaxOccurs" value="true"/>
+  <Property key="Validate.targetValidationErrorLevelMaxOccurs" value="Hard_Error"/>
+</ExtolProperties>

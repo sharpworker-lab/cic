@@ -1,0 +1,119 @@
+package com.customer.b2bcloud.core.process;
+
+def bps B2BCloudErrorMessageBPS {
+
+	def execute(String messageType, String dataReferenceValue, String partner, StorageNode data, String processNumber,
+	String b2biaaSownerId) {
+		var String sendEmailFrom
+		var String sendEmailTo
+		var String subjectFull
+		var String messageFull
+		var String environment
+		var Boolean setExitStatusSuccess=true
+		var Boolean setExitStatusFailure=false
+		var String subject1=" ERROR: Clarify - "
+		var String message1="Cleo Clarify B2B Cloud encountered an error.  Please review the process logs."
+		var String message2="\\nData Reference Value: "
+		var String environment_1="<com.customer.b2bcloud.core.B2BCloudGV.Environment>"
+		var String attachmentName
+		var String vOwner
+		var String cMS="MS"
+		var StorageNode b2biaasContext
+		var Long length
+		var String URL
+		var StorageNode ProcessLog
+		var String processlogString
+		var Long Position1
+		var Long Position2
+
+		step {
+			new ResolveGlobalVariables().execute(sendEmailTo, "<com.eaSween.core.b2bCloud.B2BCloudGV.B2BCloudAdminEmail>")
+		} next : end 
+		step {
+			new ResolveGlobalVariables().execute(sendEmailFrom, "<com.eaSween.core.b2bCloud.B2BCloudGV.B2BCloudHostEmail>")
+		} next : end 
+		step {
+			new ResolveGlobalVariables().execute(environment, environment_1)
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, subject1, partner)
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, subjectFull, " - ")
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, subjectFull, messageType)
+		} next : end 
+		step AttachmentName {
+			new AppendString().execute(attachmentName, subjectFull, ".txt")
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, message1, message2)
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, dataReferenceValue)
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, environment, subjectFull)
+		} next : end 
+		step {
+			new com.customer.b2bcloud.core.database.ProcessURLSQL$BpsTask().execute(processNumber, URL)
+		} next : end 
+		step {
+			new StringLength().execute(URL, length)
+		} next : end 
+		step {
+			new Subtract().execute(length, length, 14)
+		} next : end 
+		step {
+			new Substring().execute(URL, URL, 0, length)
+		} next : end 
+		step {
+			new com.customer.b2bcloud.core.adapters.ProcessLogFA().execute(ProcessLog, URL)
+		} next : end 
+		step {
+			new ConvertStorageNodeToString().execute(ProcessLog, processlogString)
+		} next : end 
+		step {
+			new IndexOfString().execute(Position1, processlogString, "[ERROR]", unset)
+		} next : end 
+		step {
+			new Substring().execute(processlogString, processlogString, Position1, unset)
+		} next : end 
+		step {
+			new IndexOfString().execute(Position2, processlogString, "]]></Log4j>", unset)
+		} next : end 
+		step {
+			new Substring().execute(processlogString, processlogString, 9, Position2)
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, "\\n\\nError Logs :")
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, "\\n")
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, processlogString)
+		} next : end 
+		step Subject {
+			new AppendString().execute(subjectFull, environment, subjectFull)
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, subjectFull, "- Process Number -")
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, subjectFull, processNumber)
+		} next : end 
+		#
+		step {
+			new CompareValues().execute(vOwner, cMS, "Equal (=)".asCompareType, unset)
+		} end : next 
+		step SendEmail {
+			new SendEmail().execute(sendEmailTo, sendEmailFrom, null, null, subjectFull, messageFull, data, attachmentName)
+		} end : end 
+		step Failure {
+			new SetExitStatus().execute(setExitStatusFailure)
+		} end : end 
+	}
+
+}

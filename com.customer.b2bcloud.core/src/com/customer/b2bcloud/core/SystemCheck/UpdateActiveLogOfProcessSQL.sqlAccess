@@ -1,0 +1,20 @@
+#content /*sqlaccess 2 */ package com.customer.b2bcloud.core.SystemCheck;
+
+def sqlAccess UpdateActiveLogOfProcessSQL {
+
+	def execute(String date, String activeCount) {
+		bindInput(typeof(BIGINT), date)
+		bindOutput(typeof(VARCHAR), activeCount)
+
+		dataSource = new com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS
+		statement = "update \"EBI\".\"LOG_OF_PROCESS\" SET \"STATUS\" = \'9\' where \"EBI\".\"LOG_OF_PROCESS\".\"STATUS\" =\'1\'  and \"DATE\" < ${date}"
+
+		timeout [
+			timeUnit = Seconds
+		]
+
+		retry [
+			timeUnit = Seconds
+		]
+	}
+}

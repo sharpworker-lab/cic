@@ -1,0 +1,23 @@
+#content /*sqlaccess 2 */ package com.customer.b2bcloud.core.database;
+
+def sqlAccess DuplicateCountSQL {
+
+	def execute(String GROUP_CODE, String SENDER_ID, String RECEIVER_ID, String INTERCHANGE_CONTROL_REF, String Count) {
+		bindInput(typeof(VARCHAR), GROUP_CODE)
+		bindInput(typeof(VARCHAR), SENDER_ID)
+		bindInput(typeof(VARCHAR), RECEIVER_ID)
+		bindInput(typeof(VARCHAR), INTERCHANGE_CONTROL_REF)
+		bindOutput(typeof(VARCHAR), Count)
+
+		dataSource = new com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS
+		statement = "select count(*) from \"LOG_OF_GROUP\" where \"GROUP_CODE\"=${GROUP_CODE} and \"SENDER_ID\"=${SENDER_ID} and \"RECEIVER_ID\"=${RECEIVER_ID} and \"INTERCHANGE_CONTROL_REF\"=${INTERCHANGE_CONTROL_REF}"
+
+		timeout [
+			timeUnit = Seconds
+		]
+
+		retry [
+			timeUnit = Seconds
+		]
+	}
+}

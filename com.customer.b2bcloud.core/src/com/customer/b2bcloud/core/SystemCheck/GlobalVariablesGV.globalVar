@@ -1,0 +1,44 @@
+package com.customer.b2bcloud.core.SystemCheck ;
+
+def globalVariables GlobalVariablesGV {
+
+	def variable CustomerName () {
+		value = "PRODUCTION - Customer - "
+	}
+
+	def variable emailTo () {
+		value = "b2bcloud@cleo.com"
+	}
+
+	def variable emailFrom () {
+		value = "customer@cleointegration.cloud"
+	}
+
+	def variable EFSMountDirectory () {
+		value = "/mnt/efsmnt/"
+	}
+
+	def variable Environment () {
+		value = "customer - B2BCloud "
+	}
+
+	def variable ClarifyCustom () {
+		value = "<com.customer.b2bcloud.core.SystemCheck.GlobalVariablesGV.EFSMountDirectory>ClarifyCustom/"
+	}
+
+	def variable Year () {
+		value = "Year"
+	}
+
+	def variable Month () {
+		value = "Month"
+	}
+
+	def variable Day () {
+		value = "Day"
+	}
+
+	def variable Hour () {
+		value = "Hour"
+	}
+}

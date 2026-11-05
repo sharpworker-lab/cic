@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/SystemcheckFM.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" componentType="7" name="com.customer.b2bcloud.core.SystemCheck.SystemcheckFM">
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.SystemCheck.SystemCheckEV"/>
+  </ConfigurationComponent>
+?>
+<ConfigurableInteractionSpec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="AdapterConfiguration.xsd" adapterUUID="_9853e3812b0740f1917b986d3f05eb34" description="com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" interactionSpecName="Listen" uuid="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" version="1">
+  <ConfigurationParameter classReference="adapter" key="adapter" uuid="_irn:/00000000000000000000000000000001" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="fileSystem"/>
+  <ConfigurationParameter classReference="adapterFunction" key="adapterFunction" uuid="_irn:/00000000000000000000000000000002" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="listen"/>
+  <ConfigurationParameter classReference="timeout" key="timeout" uuid="_irn:/00000000000000000000000000000003" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value=""/>
+  <ConfigurationParameter classReference="name" key="name" uuid="_irn:/00000000000000000000000000000004" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="com.customer.b2bcloud.core.SystemCheck.SystemcheckFM"/>
+  <ConfigurationParameter classReference="url" key="url" uuid="_irn:/00000000000000000000000000000005" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="&lt;com.customer.b2bcloud.core.SystemCheck.GlobalVariablesGV.ClarifyCustom>SystemCheck"/>
+  <ConfigurationParameter classReference="filenameFilter" key="filenameFilter" uuid="_irn:/00000000000000000000000000000006" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value=".*"/>
+  <ConfigurationParameter classReference="directoryPollingInterval" key="directoryPollingInterval" uuid="_irn:/00000000000000000000000000000007" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="900000"/>
+  <ConfigurationParameter classReference="runAsService" key="runAsService" uuid="_irn:/00000000000000000000000000000008" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="false"/>
+  <ConfigurationParameter classReference="isRecursive" key="isRecursive" uuid="_irn:/00000000000000000000000000000009" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="false"/>
+  <ConfigurationParameter classReference="archiveURL" key="archiveURL" uuid="_irn:/00000000000000000000000000000010" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="com.customer.b2bcloud.core.SystemCheck.EFSMountDirectory>/ClarifyCustom/SystemCheck"/>
+  <ConfigurationParameter classReference="collisionAction" key="collisionAction" uuid="_irn:/00000000000000000000000000000011" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="overwrite"/>
+  <ConfigurationParameter classReference="filerename" key="filerename" uuid="_irn:/00000000000000000000000000000012" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value=""/>
+  <ConfigurationParameter classReference="notificationType" key="notificationType" uuid="_irn:/00000000000000000000000000000013" uuidParent="_fqn:/com.customer.b2bcloud.core.SystemCheck.SystemcheckFM" value="com.customer.b2bcloud.core.SystemCheck.SystemCheckEV"/>
+</ConfigurableInteractionSpec>

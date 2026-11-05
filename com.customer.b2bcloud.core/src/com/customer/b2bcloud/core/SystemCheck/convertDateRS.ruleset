@@ -1,0 +1,34 @@
+package com.customer.b2bcloud.core.SystemCheck
+
+def ruleSet convertDateRS {
+
+	var SystemContext sys = new SystemContext
+	var BaseGlobalContext glb = new BaseGlobalContext
+	var EnvironmentContext env = new EnvironmentContext
+	var Number vCurrentDateLong
+	var Number vCurrentDateMinus1Hour
+	var Number vCurrentDateMinus1Day
+
+	def execute(StorageNode sourceNode, StorageNode targetNode, TransformationSettings settings, StorageNode updateNode, StorageNode sourceContextNode, StorageNode targetContextNode) {
+		var source = bindInput(typeof(com.customer.b2bcloud.core.SystemCheck.dummyFF), sourceNode)
+
+		options [
+			connectorOptions [
+				sourceConnector = new ConvertSingleFmtFileToDocument
+				targetConnector = defaultConnector
+			]
+			advancedOptions [
+				useOnlyRequiredAttributes = true
+			]
+		]
+
+		{
+			new GetCurrentDateInLongFormat().execute() => #[this.vCurrentDateLong]
+			new Subtract().execute(this.vCurrentDateLong, 3600000, 0) => #[this.vCurrentDateMinus1Hour]
+			new Move().execute(this.vCurrentDateMinus1Hour) --> #[this.env.User_Reference_1]
+			new Subtract().execute(this.vCurrentDateLong, 86400000, 0) => #[this.vCurrentDateMinus1Day]
+			new Move().execute(this.vCurrentDateMinus1Day) --> #[this.env.User_Reference_2]
+		}
+	}
+
+}

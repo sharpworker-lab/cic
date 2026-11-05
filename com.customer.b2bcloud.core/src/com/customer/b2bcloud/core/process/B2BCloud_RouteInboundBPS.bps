@@ -1,0 +1,54 @@
+package com.customer.b2bcloud.core.process;
+
+def bps B2BCloud_RouteInboundBPS implements com.extol.ebi.bps.lib.templates.InboundEdiRouteTemplate {
+
+	@ RouteParameter
+	public var Ruleset ruleset
+	@ RouteParameter
+	public var String documentType
+	@ RouteParameter
+	public var String TradingPartner
+	@ RouteParameter
+	public var String b2biaaSownerId
+
+	def execute(Route route, StorageNode context, StorageNode inputDataFragment) {
+		var StorageNode target
+		var StorageNode targetContext
+		var String vReferenceNumber
+		var Boolean ^true=true
+		var TransformationSettings settings=new com.customer.b2bcloud.core.DefaultTransformationSettingsTS
+		var String vUserReference1="env.var.User_Reference_1"
+		var String vProcessNumber
+
+		step {
+			new SetRouteFieldValues().execute(route)
+		} next : end 
+		step {
+			ruleset.execute(inputDataFragment, target, settings, null, context, targetContext)
+		} next : Failure
+		step {
+			new GetContextPointValue().execute(targetContext, vUserReference1, vReferenceNumber)
+		} next : Failure
+		step {
+			new com.customer.b2bcloud.core.adapters.B2BCloud_WriteFilesToCustomerHarmonyFA().execute(target, documentType,
+			TradingPartner, vReferenceNumber)
+		} next : Failure
+		step {
+			new SetExitStatus().execute(^true)
+		} end : end 
+		step Failure {
+			new GetContextPointValue().execute(targetContext, vUserReference1, vReferenceNumber)
+		} next : next 
+		step {
+			new GetProcessNumber().execute(vProcessNumber)
+		} next : next 
+		step {
+			new com.customer.b2bcloud.core.process.B2BCloudErrorMessageBPS().execute(documentType, vReferenceNumber,
+			TradingPartner, inputDataFragment, vProcessNumber, b2biaaSownerId)
+		} next : next 
+		step {
+			new SetExitStatus().execute(false)
+		} next : end 
+	}
+
+}

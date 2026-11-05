@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/process/B2BCloud_RouteOutboundBPS.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.process.B2BCloud_RouteOutboundBPS" componentType="6" name="com.customer.b2bcloud.core.process.B2BCloud_RouteOutboundBPS">
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.process.B2BCloudErrorMessageBPS"/>
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.process.B2BCloudForceErrorMessageBPS"/>
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.DefaultTransformationSettingsTS"/>
+  </ConfigurationComponent>
+?>
+<ProcessControlScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProcessControlScript.xsd">
+  <BPScript scriptID="_fqn:/com.customer.b2bcloud.core.process.B2BCloud_RouteOutboundBPS" templateID="_aa1ef1e877424108b4809232def5c514" name="com.customer.b2bcloud.core.process.B2BCloud_RouteOutboundBPS" version="1.0" destination="topic/Engine" visible="true" editable="true">
+    <Argument name="route" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.collaboration.CollaborationID"/>
+    </Argument>
+    <Argument name="context" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="inputDataFragment" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="true" type="CONSTANT" required="true" mappable="true" value="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <Argument name="transformationRuleset" type="COLLABORATION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.transformation.rules.LiteTransformationRuleSet"/>
+    </Argument>
+    <Argument name="Partner" type="COLLABORATION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="docType" type="COLLABORATION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="b2biaaSownerId" type="COLLABORATION" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="updateStorageNode" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="targetContextStorageNode" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+    </Argument>
+    <Argument name="dataReference" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="transformationSettings" type="CONSTANT" required="true" mappable="true" value="fqn:/com.customer.b2bcloud.core.DefaultTransformationSettingsTS">
+      <classOfArgumentValue classOfArgumentValue="com.extol.transformation.rules.TransformationSettingsID"/>
+    </Argument>
+    <Argument name="false" type="CONSTANT" required="true" mappable="true" value="false">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <Argument name="envVarUserReference1" type="CONSTANT" required="true" mappable="true" value="env.var.User_Reference_1">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="vForce" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="cYes" type="CONSTANT" required="true" mappable="true" value="YES">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="vForceReason" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="vDescription" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="vItemId" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="vProcessNumber" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="_ebi3_stringliteral0" type="CONSTANT" required="true" mappable="true" value="glb.var.ForcedError">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="Equal (=)" type="CONSTANT" required="true" mappable="true" value="Equal (=)">
+      <classOfArgumentValue classOfArgumentValue="com.extol.businessprocess.CompareType"/>
+    </Argument>
+    <Argument name="_ebi3_booleanliteral0" type="CONSTANT" required="true" mappable="true" value="false">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <Argument name="_ebi3_stringliteral1" type="CONSTANT" required="true" mappable="true" value="glb.var.ForcedReason">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="_ebi3_stringliteral2" type="CONSTANT" required="true" mappable="true" value="glb.var.ProductDescription">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="_ebi3_stringliteral3" type="CONSTANT" required="true" mappable="true" value="glb.var.ItemId">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <BPStep stepID="_irn:/00000000000000000000000000000001" label="" nextPass="NEXT" nextPassI="1" nextFail="END" nextFailI="-1" enabled="true" parms="0">
+      <LiteBPScript scriptID="_76f166dfd337410498f18c9b6c6057e2" name="Set Route Parameter Values" version="1.0">
+        <Argument name="Route" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.collaboration.CollaborationID"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000002" label="" nextPass="NEXT" nextPassI="2" nextFail="Failure" nextFailI="3" enabled="true" parms="-1,2,-1,11,4,8,1,9">
+      <LiteBPScript scriptID="_8dd81e68785e40f0ae07d149d91f1b91" name="Execute Transformation - Single Output" version="1.0">
+        <Argument name="Single/Multiple" type="PARAMETER" required="true" mappable="false" value="single">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source Storage Node" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Target Storage Node" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Transformation Settings" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.transformation.rules.TransformationSettingsID"/>
+        </Argument>
+        <Argument name="RuleSet" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.transformation.rules.LiteTransformationRuleSet"/>
+        </Argument>
+        <Argument name="Update Storage Node" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Source Context Storage Node" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Target Context Storage Node" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000003" label="Success" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="3">
+      <LiteBPScript scriptID="_39d614240ea84103b88fb5f8c6d90673" name="Set Exit Status" version="1.0">
+        <Argument name="Status" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000004" label="Failure" nextPass="NEXT" nextPassI="4" nextFail="NEXT" nextFailI="4" enabled="true" parms="-1,9,13,10">
+      <LiteBPScript scriptID="_fdfea4f3b9784100b515de18f0666531" name="Context Point - Get Value" version="1.0">
+        <Argument name="Action" type="PARAMETER" required="true" mappable="false" value="Context Point - Get Value">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Context Storage Node" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Variable Name" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Variable Value" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000005" label="" nextPass="NEXT" nextPassI="5" nextFail="NEXT" nextFailI="5" enabled="true" parms="-1,9,20,14">
+      <LiteBPScript scriptID="_fdfea4f3b9784100b515de18f0666531" name="Context Point - Get Value" version="1.0">
+        <Argument name="Action" type="PARAMETER" required="true" mappable="false" value="Context Point - Get Value">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Context Storage Node" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Variable Name" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Variable Value" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000006" label="" nextPass="NEXT" nextPassI="6" nextFail="NEXT" nextFailI="6" enabled="true" parms="19">
+      <LiteBPScript scriptID="_d555080de63341119c9a8960c5f58792" name="Get Process Number" version="1.0">
+        <Argument name="Process Number" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000007" label="" nextPass="Force" nextPassI="9" nextFail="NEXT" nextFailI="7" enabled="true" parms="14,15,21,-1">
+      <LiteBPScript scriptID="_4a29bdf0786140f0b60ef776f146cf7e" name="Compare Values" version="1.0">
+        <Argument name="Value 1" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Object"/>
+        </Argument>
+        <Argument name="Value 2" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Object"/>
+        </Argument>
+        <Argument name="Compare Type" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.businessprocess.CompareType"/>
+        </Argument>
+        <Argument name="Result" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000008" label="Standard" nextPass="NEXT" nextPassI="8" nextFail="NEXT" nextFailI="8" enabled="true" parms="6,10,5,2,19,7">
+      <LiteBPScript scriptID="fqn:/com.customer.b2bcloud.core.process.B2BCloudErrorMessageBPS" name="B2BCloudErrorMessageBPS" version="1.0">
+        <Argument name="messageType" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="dataReferenceValue" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="partner" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="data" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="processNumber" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="b2biaaSownerId" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000009" label="" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="22">
+      <LiteBPScript scriptID="_39d614240ea84103b88fb5f8c6d90673" name="Set Exit Status" version="1.0">
+        <Argument name="Status" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000010" label="Force" nextPass="NEXT" nextPassI="10" nextFail="END" nextFailI="-1" enabled="true" parms="-1,9,23,16">
+      <LiteBPScript scriptID="_fdfea4f3b9784100b515de18f0666531" name="Context Point - Get Value" version="1.0">
+        <Argument name="Action" type="PARAMETER" required="true" mappable="false" value="Context Point - Get Value">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Context Storage Node" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Variable Name" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Variable Value" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000011" label="" nextPass="NEXT" nextPassI="11" nextFail="END" nextFailI="-1" enabled="true" parms="-1,9,24,17">
+      <LiteBPScript scriptID="_fdfea4f3b9784100b515de18f0666531" name="Context Point - Get Value" version="1.0">
+        <Argument name="Action" type="PARAMETER" required="true" mappable="false" value="Context Point - Get Value">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Context Storage Node" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Variable Name" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Variable Value" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000012" label="" nextPass="NEXT" nextPassI="12" nextFail="END" nextFailI="-1" enabled="true" parms="-1,9,25,18">
+      <LiteBPScript scriptID="_fdfea4f3b9784100b515de18f0666531" name="Context Point - Get Value" version="1.0">
+        <Argument name="Action" type="PARAMETER" required="true" mappable="false" value="Context Point - Get Value">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Context Storage Node" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Variable Name" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Variable Value" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000013" label="" nextPass="NEXT" nextPassI="13" nextFail="END" nextFailI="-1" enabled="true" parms="6,10,5,2,16,17,18">
+      <LiteBPScript scriptID="fqn:/com.customer.b2bcloud.core.process.B2BCloudForceErrorMessageBPS" name="B2BCloudForceErrorMessageBPS" version="1.0">
+        <Argument name="messageType" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="dataReferenceValue" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="partner" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="data" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="forceReason" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="description" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="itemId" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000014" label="" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="12">
+      <LiteBPScript scriptID="_39d614240ea84103b88fb5f8c6d90673" name="Set Exit Status" version="1.0">
+        <Argument name="Status" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+  </BPScript>
+</ProcessControlScript>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/process/B2BCloud_NoOutboundRouteErrorBPS.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.process.B2BCloud_NoOutboundRouteErrorBPS" componentType="6" name="com.customer.b2bcloud.core.process.B2BCloud_NoOutboundRouteErrorBPS">
+  </ConfigurationComponent>
+?>
+<ProcessControlScript xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ProcessControlScript.xsd">
+  <BPScript scriptID="_fqn:/com.customer.b2bcloud.core.process.B2BCloud_NoOutboundRouteErrorBPS" name="com.customer.b2bcloud.core.process.B2BCloud_NoOutboundRouteErrorBPS" version="1.0" destination="topic/Engine" visible="true" editable="true">
+    <Argument name="messageType" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="tpId" type="PARAMETER" required="true" viewable="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="sendEmailFrom" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="sendEmailTo" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="messageVar" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="date" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.util.Date"/>
+    </Argument>
+    <Argument name="dateString" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="environment" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="sendEmailSubjectFull" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="eBIHostEmail" type="CONSTANT" required="true" mappable="true" value="&lt;com.customer.b2bcloud.core.B2BCloudGV.B2BCloudHostEmail>">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="eBIAdministratorEmail" type="CONSTANT" required="true" mappable="true" value="&lt;com.customer.b2bcloud.core.B2BCloudGV.B2BCloudAdminEmail>">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="sendEmailSubject" type="CONSTANT" required="true" mappable="true" value="Clarify - Invalid TP Notification:">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="setExitStatusSuccess" type="CONSTANT" required="true" mappable="true" value="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <Argument name="setExitStatusFailure" type="CONSTANT" required="true" mappable="true" value="false">
+      <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+    </Argument>
+    <Argument name="message1" type="CONSTANT" required="true" mappable="true" value="An invalid TP of ">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="message2" type="CONSTANT" required="true" mappable="true" value=" for an outbound ">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="message3" type="CONSTANT" required="true" mappable="true" value=" was attempted to be translated in Clarify. Please review logs for details.">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="yyyyMMddHHmmssSSS" type="CONSTANT" required="true" mappable="true" value="yyyyMMddHHmmssSSS">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="message4" type="CONSTANT" required="true" mappable="true" value="\nTime: ">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="environment_1" type="CONSTANT" required="true" mappable="true" value="&lt;com.customer.b2bcloud.core.B2BCloudGV.Environment>">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="attachmentName" type="VARIABLE" required="true" mappable="true">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <Argument name="_ebi3_stringliteral0" type="CONSTANT" required="true" mappable="true" value=".txt">
+      <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+    </Argument>
+    <BPStep stepID="_irn:/00000000000000000000000000000001" label="" nextPass="NEXT" nextPassI="1" nextFail="Failure" nextFailI="16" enabled="true" parms="2,9">
+      <LiteBPScript scriptID="_f5dbfd5425e7410886bde8ea26e1b282" name="Resolve Global Variables" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000002" label="" nextPass="NEXT" nextPassI="2" nextFail="Failure" nextFailI="16" enabled="true" parms="3,10">
+      <LiteBPScript scriptID="_f5dbfd5425e7410886bde8ea26e1b282" name="Resolve Global Variables" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000003" label="" nextPass="NEXT" nextPassI="3" nextFail="Failure" nextFailI="16" enabled="true" parms="7,19">
+      <LiteBPScript scriptID="_f5dbfd5425e7410886bde8ea26e1b282" name="Resolve Global Variables" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000004" label="" nextPass="NEXT" nextPassI="4" nextFail="Failure" nextFailI="16" enabled="true" parms="5">
+      <LiteBPScript scriptID="_f1515c0f957941128b24d5957f094767" name="Date - Get Current Date" version="1.0">
+        <Argument name="Current Date" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.util.Date"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000005" label="" nextPass="NEXT" nextPassI="5" nextFail="Failure" nextFailI="16" enabled="true" parms="6,5,17">
+      <LiteBPScript scriptID="_8c5af37b96984112b7478c4ee6982892" name="Date - Convert to String" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.util.Date"/>
+        </Argument>
+        <Argument name="Date Format" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000006" label="" nextPass="NEXT" nextPassI="6" nextFail="Failure" nextFailI="16" enabled="true" parms="4,14,1">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000007" label="" nextPass="NEXT" nextPassI="7" nextFail="Failure" nextFailI="16" enabled="true" parms="4,4,15">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000008" label="" nextPass="NEXT" nextPassI="8" nextFail="Failure" nextFailI="16" enabled="true" parms="4,4,0">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000009" label="" nextPass="NEXT" nextPassI="9" nextFail="Failure" nextFailI="16" enabled="true" parms="4,4,16">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000010" label="" nextPass="NEXT" nextPassI="10" nextFail="Failure" nextFailI="16" enabled="true" parms="4,4,18">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000011" label="" nextPass="NEXT" nextPassI="11" nextFail="Failure" nextFailI="16" enabled="true" parms="4,4,6">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000012" label="" nextPass="NEXT" nextPassI="12" nextFail="NEXT" nextFailI="12" enabled="true" parms="8,7,11">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000013" label="attachment1" nextPass="NEXT" nextPassI="13" nextFail="NEXT" nextFailI="13" enabled="true" parms="20,1,0">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000014" label="" nextPass="NEXT" nextPassI="14" nextFail="NEXT" nextFailI="14" enabled="true" parms="20,20,21">
+      <LiteBPScript scriptID="_3067d9955eba4106b0daa4c94b6be190" name="String - Append" version="1.0">
+        <Argument name="Target" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Source" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Append" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000015" label="" nextPass="NEXT" nextPassI="15" nextFail="Failure" nextFailI="16" enabled="true" parms="3,2,-1,-1,8,4,-1,20">
+      <LiteBPScript scriptID="_aeabd6c7130a40f18da6ac7089f52712" name="Send Email" version="1.0">
+        <Argument name="To" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="From" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="CC:" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="BCC:" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Subject" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+        <Argument name="Message" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Attachment" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.io.File"/>
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+          <classOfArgumentValue classOfArgumentValue="com.extol.storage.StorageID"/>
+        </Argument>
+        <Argument name="Attachment Name" type="PARAMETER" required="false" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.String"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000016" label="Success" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="12">
+      <LiteBPScript scriptID="_39d614240ea84103b88fb5f8c6d90673" name="Set Exit Status" version="1.0">
+        <Argument name="Status" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+    <BPStep stepID="_irn:/00000000000000000000000000000017" label="Failure" nextPass="END" nextPassI="-1" nextFail="END" nextFailI="-1" enabled="true" parms="13">
+      <LiteBPScript scriptID="_39d614240ea84103b88fb5f8c6d90673" name="Set Exit Status" version="1.0">
+        <Argument name="Status" type="PARAMETER" required="true" mappable="true">
+          <classOfArgumentValue classOfArgumentValue="java.lang.Boolean"/>
+        </Argument>
+      </LiteBPScript>
+    </BPStep>
+  </BPScript>
+</ProcessControlScript>

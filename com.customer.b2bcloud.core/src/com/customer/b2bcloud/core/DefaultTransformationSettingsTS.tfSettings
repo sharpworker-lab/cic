@@ -1,0 +1,20 @@
+package com.customer.b2bcloud.core ;
+
+def transformationSettings DefaultTransformationSettingsTS {
+
+	sourceConnectorSetting [
+		delimiter = ","
+		escapeWrapCharacter = "\""
+	]
+
+	targetConnectorSetting [
+		enableValidationChecks = true
+		validateRequired = HardError
+		validateMinimumLength = HardError
+		validateMaximumLength = HardError
+		validateMinimumOccurs = HardError
+		validateMaximumOccurs = HardError
+		validateDataType = HardError
+		validateAllowedValues = HardError
+	]
+}

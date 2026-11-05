@@ -1,0 +1,20 @@
+#content /*sqlaccess 2 */ package com.customer.b2bcloud.core.SystemCheck;
+
+def sqlAccess checkLogOfConnectionSQL {
+
+	def execute(String date, String receivedOnlyCount) {
+		bindInput(typeof(BIGINT), date)
+		bindOutput(typeof(VARCHAR), receivedOnlyCount)
+
+		dataSource = new com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS
+		statement = "select count(*) from \"EBI\".\"LOG_OF_CONNECTION\" where \"STATUS\" = \'27\' and \"DATE\" < ${date}"
+
+		timeout [
+			timeUnit = Seconds
+		]
+
+		retry [
+			timeUnit = Seconds
+		]
+	}
+}

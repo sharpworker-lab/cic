@@ -1,0 +1,29 @@
+#content/*bps 2 */
+package com.customer.b2bcloud.core.SystemCheck;
+
+def bps EmailNotificationBPS {
+
+	def execute(String failure) {
+		var String emailTo
+		var String emailFrom
+		var String customer
+		var String Subject
+
+		step {
+			new ResolveGlobalVariables().execute(emailFrom, "<com.customer.b2bcloud.core.SystemCheck.emailFrom>")
+		} next : end 
+		step {
+			new ResolveGlobalVariables().execute(emailTo, "<com.customer.b2bcloud.core.SystemCheck.emailTo>")
+		} next : end 
+		step {
+			new ResolveGlobalVariables().execute(customer, "<com.customer.b2bcloud.core.SystemCheck.CustomerName>")
+		} next : end 
+		step {
+			new AppendString().execute(Subject, customer, failure)
+		} next : end 
+		step {
+			new SendEmail().execute(emailTo, emailFrom, unset, unset, Subject, Subject, unset, unset)
+		} next : end 
+	}
+
+}

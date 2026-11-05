@@ -1,0 +1,11 @@
+package com.customer.b2bcloud.core.actions;
+
+def singleInputCodeTable ForcedErrorReasonCT {
+	def init () {
+		caseSensitiveKeys = true
+		defaultValue = ReturnKey1
+
+		row ("SERVICE", "***There was a Service charge within this Invoice. ***")
+		row ("NOUPC", "***UPC Not Found***")
+	}
+}

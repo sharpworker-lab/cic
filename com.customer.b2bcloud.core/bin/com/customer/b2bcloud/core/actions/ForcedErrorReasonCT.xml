@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/actions/ForcedErrorReasonCT.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.actions.ForcedErrorReasonCT" componentType="8" name="com.customer.b2bcloud.core.actions.ForcedErrorReasonCT">
+  </ConfigurationComponent>
+?>
+<CodeTable xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="CodeTable.xsd" caseSensitive="true" defaultValue="&lt;INPUT_VALUE_1>" name="com.customer.b2bcloud.core.actions.ForcedErrorReasonCT" tableID="_fqn:/com.customer.b2bcloud.core.actions.ForcedErrorReasonCT" type="0">
+  <Entry key1="SERVICE" value="***There was a Service charge within this Invoice. ***"/>
+  <Entry key1="NOUPC" value="***UPC Not Found***"/>
+</CodeTable>

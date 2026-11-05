@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/systemCheckBPS$BpsAction.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.systemCheckBPS$BpsAction" componentType="3" name="com.customer.b2bcloud.core.SystemCheck.systemCheckBPS$BpsAction">
+    <Depends configurationObjectID="fqn:/com.customer.b2bcloud.core.SystemCheck.systemCheckBPS"/>
+  </ConfigurationComponent>
+?>
+<Action xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Action.xsd" actionID="_fqn:/com.customer.b2bcloud.core.SystemCheck.systemCheckBPS$BpsAction" category="Process Scripts" name="com.customer.b2bcloud.core.SystemCheck.systemCheckBPS$BpsAction" readOnly="false">
+  <ScriptLauncher scriptID="fqn:/com.customer.b2bcloud.core.SystemCheck.systemCheckBPS"/>
+</Action>

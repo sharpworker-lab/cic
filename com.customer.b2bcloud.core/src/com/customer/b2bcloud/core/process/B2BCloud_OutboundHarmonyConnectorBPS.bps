@@ -1,0 +1,63 @@
+package com.customer.b2bcloud.core.process;
+
+def bps B2BCloud_OutboundHarmonyConnectorBPS implements com.extol.ebi.bps.lib.templates.OutboundConnectionTemplate {
+
+	@ ConnectionParameter
+	public var String partner
+	@ ConnectionParameter
+	public var String documentId
+	@ ConnectionParameter
+	public var String ^extension
+	@ ConnectionParameter
+	public var String HarmonyConnectionAlias
+
+	def execute(StorageNode inputStorageNode, EdiEnveloper ediEnveloper, String connectionLogId) {
+		var Date dateTime
+		var String datestimestring
+		var String filename
+		var String vBPS="Base Outbound Harmony Connector Business Process - "
+		var String vErrorSubject
+
+		step {
+			new SetConnectionFieldValues().execute(ediEnveloper)
+		} next : end 
+		step {
+			new GetCurrentDate().execute(dateTime)
+		} next : end 
+		step {
+			new ConvertDateToString().execute(datestimestring, dateTime, "yyyyMMddHHmmssSSS")
+		} next : end 
+		step {
+			new AppendString().execute(filename, partner, "_")
+		} next : end 
+		step {
+			new AppendString().execute(filename, filename, documentId)
+		} next : end 
+		step {
+			new AppendString().execute(filename, filename, "_")
+		} next : end 
+		step {
+			new AppendString().execute(filename, filename, datestimestring)
+		} next : end 
+		step {
+			new AppendString().execute(filename, filename, ^extension)
+		} next : end 
+		step {
+			new com.extol.ebi.lib.harmony.SendMessageToHarmony().execute(HarmonyConnectionAlias, inputStorageNode,
+			connectionLogId)
+		} next : Failure
+		step {
+			new SetExitStatus().execute(true)
+		} end : end 
+		step Failure {
+			new AppendString().execute(vErrorSubject, vBPS, HarmonyConnectionAlias)
+		} next : end 
+		step {
+			new com.customer.b2bcloud.core.process.B2BCloudStandardErrorBPS().execute(vErrorSubject)
+		} next : end 
+		step {
+			new SetExitStatus().execute(false)
+		} end : end 
+	}
+
+}

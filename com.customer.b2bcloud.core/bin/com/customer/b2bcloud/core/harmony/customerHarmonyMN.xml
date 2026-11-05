@@ -1,0 +1,6 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/harmony/customerHarmonyMN.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="com.customer.b2bcloud.core.harmony.customerHarmonyMN" componentType="48" name="com.customer.b2bcloud.core.harmony.customerHarmonyMN">
+  </ConfigurationComponent>
+?>
+<ConfigurableInteractionSpec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="AdapterConfiguration.xsd" version="1793834229557"/>

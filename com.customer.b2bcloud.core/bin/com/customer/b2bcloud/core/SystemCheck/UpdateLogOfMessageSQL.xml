@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/SystemCheck/UpdateLogOfMessageSQL.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.SystemCheck.UpdateLogOfMessageSQL" componentType="3" name="com.customer.b2bcloud.core.SystemCheck.UpdateLogOfMessageSQL">
+    <Depends configurationObjectID="com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS"/>
+  </ConfigurationComponent>
+?>
+<Action xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Action.xsd" actionID="_fqn:/com.customer.b2bcloud.core.SystemCheck.UpdateLogOfMessageSQL" category="SQL_Access" name="UpdateLogOfMessageSQL">
+  <SQLAction callable="false" dataSourceID="fqn:/com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS" inputTypes="-5,12" multipleRecordAction="fail" noRecordAction="returnNull" retries="0" retryInterval="0" retryIntervalUOT="S" statementString="update &quot;EBI&quot;.&quot;LOG_OF_MESSAGE&quot; SET &quot;STATUS&quot; = '9' where (&quot;EBI&quot;.&quot;LOG_OF_MESSAGE&quot;.&quot;STATUS&quot; = '26' and &quot;EBI&quot;.&quot;LOG_OF_MESSAGE&quot;.&quot;MESSAGE_ID&quot; != 'CONTRL')  and &quot;DATE&quot; &lt; ${date}" timeout="0" timeoutUOT="S" useCache="false"/>
+  <ActionParameter direction="1" displaySequence="0" index="0" name="date" required="true" single="true">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+  <ActionParameter direction="2" displaySequence="1" index="1" name="activeCount" required="true" single="true">
+    <AllowedDataType>string</AllowedDataType>
+  </ActionParameter>
+</Action>

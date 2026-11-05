@@ -1,0 +1,20 @@
+#content /*sqlaccess 2 */ package com.customer.b2bcloud.core.SystemCheck;
+
+def sqlAccess checkLogOfMessageSQL {
+
+	def execute(String date, String activeCount) {
+		bindInput(typeof(BIGINT), date)
+		bindOutput(typeof(VARCHAR), activeCount)
+
+		dataSource = new com.customer.b2bcloud.core.SystemCheck.ClarifyDatabaseDS
+		statement = "select count(*) from \"EBI\".\"LOG_OF_MESSAGE\" where (\"STATUS\" = \'26\' and \"MESSAGE_ID\" != \'CONTRL\') and \"DATE\" < ${date}"
+
+		timeout [
+			timeUnit = Seconds
+		]
+
+		retry [
+			timeUnit = Seconds
+		]
+	}
+}

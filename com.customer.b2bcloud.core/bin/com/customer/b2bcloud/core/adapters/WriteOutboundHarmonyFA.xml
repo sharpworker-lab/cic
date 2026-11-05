@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/adapters/WriteOutboundHarmonyFA.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" componentType="7" name="com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA">
+  </ConfigurationComponent>
+?>
+<ConfigurableInteractionSpec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="AdapterConfiguration.xsd" adapterUUID="_9853e3812b0740f1917b986d3f05eb34" description="com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" interactionSpecName="Write" uuid="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" version="1">
+  <ConfigurationParameter classReference="username" key="username" uuid="_irn:/00000000000000000000000000000001" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value=""/>
+  <ConfigurationParameter classReference="password" key="password" uuid="_irn:/00000000000000000000000000000002" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value=""/>
+  <ConfigurationParameter classReference="adapter" key="adapter" uuid="_irn:/00000000000000000000000000000003" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value="fileSystem"/>
+  <ConfigurationParameter classReference="obtainAtRuntime" key="obtainAtRuntime" uuid="_irn:/00000000000000000000000000000004" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value="false"/>
+  <ConfigurationParameter classReference="filename" key="filename" uuid="_irn:/00000000000000000000000000000005" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value="${filename}"/>
+  <ConfigurationParameter classReference="url" key="url" uuid="_irn:/00000000000000000000000000000006" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value="&lt;com.customer.b2bcloud.core.B2BCloudGV.EFSMountDirectory>${protocol}\outbox\${partnerDirectory}"/>
+  <ConfigurationParameter classReference="storageNode" key="storageNode" uuid="_irn:/00000000000000000000000000000007" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value=""/>
+  <ConfigurationParameter classReference="adapterFunction" key="adapterFunction" uuid="_irn:/00000000000000000000000000000008" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value="write"/>
+  <ConfigurationParameter classReference="createDir" key="createDir" uuid="_irn:/00000000000000000000000000000009" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value="true"/>
+  <ConfigurationParameter classReference="collisionAction" key="collisionAction" uuid="_irn:/00000000000000000000000000000010" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.WriteOutboundHarmonyFA" value="generateUniqueName"/>
+</ConfigurableInteractionSpec>

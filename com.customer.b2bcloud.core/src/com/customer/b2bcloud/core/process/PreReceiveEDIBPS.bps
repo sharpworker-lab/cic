@@ -1,0 +1,50 @@
+#content/*bps 2 */
+package com.customer.b2bcloud.core.process;
+
+def bps PreReceiveEDIBPS {
+
+	def execute(StorageNode payload) {
+		var String EdiString
+		var String Group_Code
+		var String Sender_ID
+		var String Receiver_ID
+		var String InterchangeControl_Ref
+		var String Count
+		var String cZero="0"
+		var String message="Please check the file , It has error . File Failed during parsing. "
+
+		step {
+			new ConvertStorageNodeToString().execute(payload, EdiString)
+		} next : FileError
+		step {
+			new Substring().execute(Group_Code, EdiString, 110, 112)
+		} next : FileError
+		step {
+			new Substring().execute(Sender_ID, EdiString, 35, 50)
+		} next : FileError
+		step {
+			new Substring().execute(Receiver_ID, EdiString, 54, 69)
+		} next : FileError
+		step {
+			new Substring().execute(InterchangeControl_Ref, EdiString, 90, 99)
+		} next : FileError
+		step {
+			new com.customer.b2bcloud.core.database.DuplicateCountSQL$BpsTask().execute(Group_Code, Sender_ID, Receiver_ID,
+			InterchangeControl_Ref, Count)
+		} next : FileError
+		step {
+			new CompareValues().execute(Count, cZero, "Equal (=)".asCompareType, unset)
+		} next : Duplicate
+		step {
+			new com.extol.ebi.bps.lib.bps.ReceiveEdi().execute(payload, unset)
+		} next : end 
+		step FileError {
+			new SendEmail().execute("b2bcloud@cleo.com", "customer@cleointegration.cloud", unset, unset,
+			"Error in File, Failed in PreReceiveEDI BPs", message, unset, unset)
+		} next : end 
+		step Duplicate {
+			new SetExitStatus().execute(true)
+		} next : end 
+	}
+
+}

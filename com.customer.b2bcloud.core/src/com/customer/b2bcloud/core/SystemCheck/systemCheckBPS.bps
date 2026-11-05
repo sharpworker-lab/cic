@@ -1,0 +1,77 @@
+#content/*bps 2 */
+package com.customer.b2bcloud.core.SystemCheck;
+
+def bps systemCheckBPS {
+
+	def execute() {
+		var String vActiveCount
+		var String c0="0"
+		var String vReceivedOnlyCount
+		var String vDateLong
+		var StorageNode input
+		var StorageNode targetContext
+		var String vReceivedUnwrappedCount
+		var String vGeneratedStatusCount="0"
+		var String vSubject
+		var String vDateMinusDayLong
+
+		#
+		step {
+			new com.customer.b2bcloud.core.SystemCheck.UpdateGLBVariablesBPS().execute()
+		} next : end 
+		step {
+			new ConvertStringToStorageNode().execute("dummy", input)
+		} next : end 
+		step {
+			new com.customer.b2bcloud.core.SystemCheck.convertDateRS().execute(input, unset, new com.customer.b2bcloud.core.SystemCheck.defaultTS, unset,
+			unset, targetContext)
+		} next : end 
+		step {
+			new GetContextPointValue().execute(targetContext, "env.var.User_Reference_1", vDateLong)
+		} next : end 
+		step {
+			new GetContextPointValue().execute(targetContext, "env.var.User_Reference_2", vDateMinusDayLong)
+		} next : end 
+		step activeStopped {
+			new com.customer.b2bcloud.core.SystemCheck.checkLogOfProcessSQL$BpsTask().execute(vDateLong, vActiveCount)
+		} next : end 
+		step {
+			new CompareValues().execute(vActiveCount, c0, "Equal (=)".asCompareType, unset)
+		} receivedOnly : next 
+		step {
+			new com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS().execute("Active or Stopped Processes exist")
+		} next : next 
+		step receivedOnly {
+			new com.customer.b2bcloud.core.SystemCheck.checkLogOfConnectionSQL$BpsTask().execute(vDateLong, vReceivedOnlyCount)
+		} next : end 
+		step {
+			new CompareValues().execute(vReceivedOnlyCount, c0, "Equal (=)".asCompareType, unset)
+		} generatedStatus : next 
+		step {
+			new com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS().execute("Received Only Connection Exist")
+		} next : end 
+		step generatedStatus {
+			new com.customer.b2bcloud.core.SystemCheck.checkGeneratedConnectionSQL$BpsTask().execute(vDateLong, vDateMinusDayLong,
+			vGeneratedStatusCount)
+		} next : end 
+		step {
+			new CompareValues().execute(vGeneratedStatusCount, c0, "Equal (=)".asCompareType, unset)
+		} receivedUnwrapped : next 
+		step {
+			new AppendString().execute(vSubject, "Generated Status Connection Exist: Count - ", vGeneratedStatusCount)
+		} next : end 
+		step {
+			new com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS().execute(vSubject)
+		} next : end 
+		step receivedUnwrapped {
+			new com.customer.b2bcloud.core.SystemCheck.checkLogOfMessageSQL$BpsTask().execute(vDateLong, vReceivedUnwrappedCount)
+		} next : end 
+		step {
+			new CompareValues().execute(vReceivedUnwrappedCount, c0, "Equal (=)".asCompareType, unset)
+		} end : next 
+		step {
+			new com.customer.b2bcloud.core.SystemCheck.EmailNotificationBPS().execute("Received and UnWrapped Messages Exist")
+		} end : end 
+	}
+
+}

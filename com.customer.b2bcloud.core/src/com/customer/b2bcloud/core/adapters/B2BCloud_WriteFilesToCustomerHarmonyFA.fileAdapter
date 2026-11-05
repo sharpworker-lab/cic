@@ -1,0 +1,12 @@
+package com.customer.b2bcloud.core.adapters;
+
+def fileWriteAdapter B2BCloud_WriteFilesToCustomerHarmonyFA {
+
+	def execute(AdapterPayload storageNodes, String DocumentType, String TradingPartner, String ReferenceNumber) {
+		parentDirectory =
+		"<com.customer.b2bcloud.core.B2BCloudGV.EFSMountDirectory>outbox/<com.customer.b2bcloud.core.B2BCloudGV.customerHarmonyDirectory>"
+		fileNameOrFilter = "${DocumentType}_${TradingPartner}_${ReferenceNumber}_${datetime:ddMMyyHHmmssS}.txt"
+		collisionAction = GenerateUniqueName
+	}
+
+}

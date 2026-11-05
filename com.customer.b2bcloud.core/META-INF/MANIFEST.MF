@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Export-Package: com.customer.b2bcloud.core,com.customer.b2bcloud.core.
+ SystemCheck,com.customer.b2bcloud.core.actions,com.customer.b2bcloud.
+ core.adapters,com.customer.b2bcloud.core.database,com.customer.b2bclo
+ ud.core.harmony,com.customer.b2bcloud.core.process
+Bundle-SymbolicName: com.customer.b2bcloud.core; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Name: com.customer.b2bcloud.core
+Require-Bundle: com.extol.ebi.ebiprojectdependencies;bundle-version="[
+ 3.2.0,5.0.0)",com.extol.ebi.lib.ebisrc;bundle-version="4.14.0",com.cl
+ eo.clarify.cloudadapter
+Bundle-ActivationPolicy: lazy
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-Vendor: Cleo
+Eclipse-BundleShape: dir
+

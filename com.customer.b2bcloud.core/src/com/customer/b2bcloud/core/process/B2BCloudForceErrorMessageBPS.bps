@@ -1,0 +1,90 @@
+package com.customer.b2bcloud.core.process;
+
+def bps B2BCloudForceErrorMessageBPS {
+
+	def execute(String messageType, String dataReferenceValue, String partner, StorageNode data, String forceReason,
+	String description, String itemId) {
+		var String sendEmailFrom
+		var String sendEmailTo
+		var String subjectFull
+		var String messageFull
+		var String environment
+		var Boolean setExitStatusSuccess=true
+		var Boolean setExitStatusFailure=false
+		var String subject1=" ERROR: Clarify - "
+		var String message1="Cleo Clarify B2B Cloud encountered an error.  Please review the process logs."
+		var String message2="\\nData Reference Value: "
+		var String environment_1="<com.customer.b2bcloud.core.B2BCloudGV.Environment>"
+		var String attachmentName
+		var String message3="\\n\\n"
+		var String vForcedReasonDescription
+
+		step {
+			new ResolveGlobalVariables().execute(sendEmailTo, "<com.customer.b2bcloud.core.B2BCloudGV.B2BCloudAdminEmail>")
+		} next : end 
+		step {
+			new ResolveGlobalVariables().execute(sendEmailFrom, "<com.customer.b2bcloud.core.B2BCloudGV.B2BCloudHostEmail>")
+		} next : end 
+		step {
+			new ResolveGlobalVariables().execute(environment, environment_1)
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, subject1, partner)
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, subjectFull, " - ")
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, subjectFull, messageType)
+		} next : end 
+		step AttachmentName {
+			new AppendString().execute(attachmentName, subjectFull, ".txt")
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, message1, message2)
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, dataReferenceValue)
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, message3)
+		} next : end 
+		step {
+			new com.customer.b2bcloud.core.actions.ForcedErrorReasonCT$BpsTask().execute(forceReason, vForcedReasonDescription)
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, vForcedReasonDescription)
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, message3)
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, "ItemID: ")
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, itemId)
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, message3)
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, "Description: ")
+		} next : end 
+		step {
+			new AppendString().execute(messageFull, messageFull, description)
+		} next : end 
+		step {
+			new AppendString().execute(subjectFull, environment, subjectFull)
+		} next : end 
+		step {
+			new SendEmail().execute(sendEmailTo, sendEmailFrom, null, null, subjectFull, messageFull, data, attachmentName)
+		} next : end 
+		step Success {
+			new SetExitStatus().execute(setExitStatusSuccess)
+		} end : end 
+		step Failure {
+			new SetExitStatus().execute(setExitStatusFailure)
+		} end : end 
+	}
+
+}

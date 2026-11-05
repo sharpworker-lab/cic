@@ -1,0 +1,44 @@
+package com.customer.b2bcloud.core ;
+
+def globalVariables B2BCloudGV {
+
+	def variable OutgoingFilesDirectory () {
+		value = "<com.customer.b2bcloud.core.B2BCloudGV.ClarifyCustom>Out/"
+	}
+
+	def variable EFSMountDirectory () {
+		value = "/mnt/efsmnt/"
+	}
+
+	def variable B2BCloudAdminEmail () {
+		value = "B2BCloud@cleo.com"
+	}
+
+	def variable B2BCloudHostEmail () {
+		value = "omnilogistics@cleointegration.cloud"
+	}
+
+	def variable Environment () {
+		value = "Omni Logistics Stage- B2BCloud "
+	}
+
+	def variable customerHarmonyDirectory () {
+		value = "OmniLogistics"
+	}
+
+	def variable ClarifyCustom () {
+		value = "<com.customer.b2bcloud.core.B2BCloudGV.EFSMountDirectory>ClarifyCustom/"
+	}
+
+	def variable PostgresDatabaseURL () {
+		value = "jdbc:postgresql://customer-inf-rds.cleointegration.cloud:5432/b2bcloudDBv414"
+	}
+
+	def variable defaultDatabaseSchema () {
+		value = "customer"
+	}
+
+	def variable B2BCloudOwner () {
+		value = "PS"
+	}
+}

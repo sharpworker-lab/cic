@@ -1,0 +1,14 @@
+package com.customer.b2bcloud.core.SystemCheck ;
+
+def fileMonitor SystemcheckFM {
+	def start () {
+		pollDirectory = "<com.customer.b2bcloud.core.SystemCheck.GlobalVariablesGV.ClarifyCustom>SystemCheck"
+		fileNameFilter = ".*"
+		pollingInterval = 15
+		pollingIntervalUnitTime = Minutes
+		archiveDirectory = "com.customer.b2bcloud.core.SystemCheck.EFSMountDirectory>/ClarifyCustom/SystemCheck"
+	}
+	def dispatchOnFile () {
+			new com.customer.b2bcloud.core.SystemCheck.SystemCheckEV().execute(null)
+	}
+}

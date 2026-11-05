@@ -1,0 +1,76 @@
+package com.customer.b2bcloud.core.process;
+
+def bps B2BCloud_RouteOutboundBPS implements com.extol.ebi.bps.lib.templates.OutboundTemplate {
+
+	@ RouteParameter
+	public var Ruleset transformationRuleset
+	@ RouteParameter
+	public var String Partner
+	@ RouteParameter
+	public var String docType
+	@ RouteParameter
+	public var String b2biaaSownerId
+
+	def execute(Route route, StorageNode context, StorageNode inputDataFragment) {
+		var StorageNode updateStorageNode
+		var StorageNode targetContextStorageNode
+		var String dataReference
+		var Boolean ^true=true
+		var TransformationSettings transformationSettings=new com.customer.b2bcloud.core.DefaultTransformationSettingsTS
+		var Boolean ^false=false
+		var String envVarUserReference1="env.var.User_Reference_1"
+		var String vForce
+		var String cYes="YES"
+		var String vForceReason
+		var String vDescription
+		var String vItemId
+		var String vProcessNumber
+
+		step {
+			new SetRouteFieldValues().execute(route)
+		} next : end 
+		step {
+			transformationRuleset.execute(inputDataFragment, null, transformationSettings, updateStorageNode, context,
+			targetContextStorageNode)
+		} next : Failure
+		step Success {
+			new SetExitStatus().execute(^true)
+		} end : end 
+		step Failure {
+			new GetContextPointValue().execute(targetContextStorageNode, envVarUserReference1, dataReference)
+		} next : next 
+		step {
+			new GetContextPointValue().execute(targetContextStorageNode, "glb.var.ForcedError", vForce)
+		} next : next 
+		step {
+			new GetProcessNumber().execute(vProcessNumber)
+		} next : next 
+		step {
+			new CompareValues().execute(vForce, cYes, "Equal (=)".asCompareType, unset)
+		} Force : next 
+		step Standard {
+			new com.customer.b2bcloud.core.process.B2BCloudErrorMessageBPS().execute(docType, dataReference, Partner,
+			inputDataFragment, vProcessNumber, b2biaaSownerId)
+		} next : next 
+		step {
+			new SetExitStatus().execute(false)
+		} end : end 
+		step Force {
+			new GetContextPointValue().execute(targetContextStorageNode, "glb.var.ForcedReason", vForceReason)
+		} next : end 
+		step {
+			new GetContextPointValue().execute(targetContextStorageNode, "glb.var.ProductDescription", vDescription)
+		} next : end 
+		step {
+			new GetContextPointValue().execute(targetContextStorageNode, "glb.var.ItemId", vItemId)
+		} next : end 
+		step {
+			new com.customer.b2bcloud.core.process.B2BCloudForceErrorMessageBPS().execute(docType, dataReference, Partner,
+			inputDataFragment, vForceReason, vDescription, vItemId)
+		} next : end 
+		step {
+			new SetExitStatus().execute(^false)
+		} end : end 
+	}
+
+}

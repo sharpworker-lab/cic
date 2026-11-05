@@ -1,0 +1,18 @@
+package com.customer.b2bcloud.core.harmony
+
+def messageFilter customerHarmonyMF {
+
+	def init() {
+		createMessageFilter [
+			channel("PayloadsFromHarmony")
+			matchAny [
+				header("HarmonyAlias").is("HarmonyHostName")
+			]
+		]
+	}
+
+	def onMatch(com.extol.ebi.messagefilter.lang.Message msg) {
+		new com.extol.ebi.lib.ReceiveEdiEvent().execute(msg.payload)
+	}
+
+}

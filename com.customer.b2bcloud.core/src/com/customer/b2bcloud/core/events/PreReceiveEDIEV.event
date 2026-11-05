@@ -1,0 +1,9 @@
+package com.customer.b2bcloud.core.events;
+
+def event PreReceiveEDIEV {
+
+	def execute(StorageNode payload) {
+		new com.customer.b2bcloud.core.process.PreReceiveEDIBPS().execute(null)
+	}
+
+}

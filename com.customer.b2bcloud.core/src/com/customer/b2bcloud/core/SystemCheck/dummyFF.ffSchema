@@ -1,0 +1,11 @@
+package com.customer.b2bcloud.core.SystemCheck ;
+
+def flatFileSchema dummyFF {
+
+	_New_Record New_Record []
+
+	def record New_Record {
+
+		New_Field String
+	}
+}

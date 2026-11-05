@@ -1,0 +1,48 @@
+#content/*bps 2 */
+package com.customer.b2bcloud.core.SystemCheck;
+
+def bps UpdateGLBVariablesBPS {
+
+	def execute() {
+		var Date vCurrentDate
+		var String sYear
+		var String sMonth
+		var String sDay
+		var String sHour
+		var String sDateString
+
+		step {
+			new GetCurrentDate().execute(vCurrentDate)
+		} next : end 
+		step {
+			new ConvertDateToString().execute(sDateString, vCurrentDate, "yyyyMMddHHmmss")
+		} next : end 
+		step {
+			new Substring().execute(sYear, sDateString, 0, 4)
+		} next : end 
+		step {
+			new Substring().execute(sMonth, sDateString, 4, 6)
+		} next : end 
+		step {
+			new Substring().execute(sDay, sDateString, 6, 8)
+		} next : end 
+		step {
+			new Substring().execute(sHour, sDateString, 8, 10)
+		} next : end 
+		step {
+			new SetGlobalVariable().execute("com.customer.b2bcloud.core.SystemCheck.GlobalVariablesGV.Year", sYear, unset,
+			unset)
+		} next : end 
+		step {
+			new SetGlobalVariable().execute("com.customer.b2bcloud.core.SystemCheck.GlobalVariablesGV.Month", sMonth, unset,
+			unset)
+		} next : end 
+		step {
+			new SetGlobalVariable().execute("com.customer.b2bcloud.core.SystemCheck.GlobalVariablesGV.Day", sDay, unset, unset)
+		} next : end 
+		step {
+			new SetGlobalVariable().execute("cleo.b2bcloud.systemcheck.GlobalVariablesGV.Hour", sHour, unset, unset)
+		} next : end 
+	}
+
+}

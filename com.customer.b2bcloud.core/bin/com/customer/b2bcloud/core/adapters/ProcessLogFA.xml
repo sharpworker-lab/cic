@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?ebi3-deployer filename=com/customer/b2bcloud/core/adapters/ProcessLogFA.xml fullyQualifiedNameMode=true
+  <ConfigurationComponent componentId="fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" componentType="7" name="com.customer.b2bcloud.core.adapters.ProcessLogFA">
+  </ConfigurationComponent>
+?>
+<ConfigurableInteractionSpec xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="AdapterConfiguration.xsd" adapterUUID="_9853e3812b0740f1917b986d3f05eb34" description="com.customer.b2bcloud.core.adapters.ProcessLogFA" interactionSpecName="Read" uuid="_fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" version="1">
+  <ConfigurationParameter classReference="username" key="username" uuid="_irn:/00000000000000000000000000000001" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" value=""/>
+  <ConfigurationParameter classReference="password" key="password" uuid="_irn:/00000000000000000000000000000002" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" value=""/>
+  <ConfigurationParameter classReference="adapter" key="adapter" uuid="_irn:/00000000000000000000000000000003" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" value="fileSystem"/>
+  <ConfigurationParameter classReference="obtainAtRuntime" key="obtainAtRuntime" uuid="_irn:/00000000000000000000000000000004" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" value="false"/>
+  <ConfigurationParameter classReference="filename" key="filename" uuid="_irn:/00000000000000000000000000000005" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" value="processLog.xml"/>
+  <ConfigurationParameter classReference="url" key="url" uuid="_irn:/00000000000000000000000000000006" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" value="/mnt/efsmnt/Clarify_4_Share-v414/logs/processes/${processLogURL}"/>
+  <ConfigurationParameter classReference="storageNode" key="storageNode" uuid="_irn:/00000000000000000000000000000007" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" value=""/>
+  <ConfigurationParameter classReference="adapterFunction" key="adapterFunction" uuid="_irn:/00000000000000000000000000000008" uuidParent="_fqn:/com.customer.b2bcloud.core.adapters.ProcessLogFA" value="read"/>
+</ConfigurableInteractionSpec>
